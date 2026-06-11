@@ -1,5 +1,5 @@
 ---
-name: job-application
+name: mokio-interview-skill
 description: Use when creating a technical resume, polishing an existing resume, or preparing for technical interviews
 ---
 
