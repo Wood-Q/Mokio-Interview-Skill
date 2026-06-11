@@ -28,8 +28,8 @@ Write a bullet point without analyzing the project? Delete it. Start over.
 digraph resume_creation {
     rankdir=TB;
     "Announce: Resume Creation workflow" [shape=box, style=filled, fillcolor="#ccffcc"];
-    "Collect personal info\n(one question at a time)" [shape=box];
-    "Collect education\n(one question at a time)" [shape=box];
+    "Ask: AI-fill or user-fill\npersonal info & education?" [shape=diamond];
+    "Present info template for\nuser to fill at once" [shape=box];
     "Collect project sources\n(local path or GitHub URL)" [shape=box];
     "AI analyzes project code" [shape=box, style=filled, fillcolor="#ffffcc"];
     "Generate project description draft" [shape=box];
@@ -41,9 +41,11 @@ digraph resume_creation {
     "Run Product Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
     "Save final .md file" [shape=doublecircle];
 
-    "Announce: Resume Creation workflow" -> "Collect personal info\n(one question at a time)";
-    "Collect personal info\n(one question at a time)" -> "Collect education\n(one question at a time)";
-    "Collect education\n(one question at a time)" -> "Collect project sources\n(local path or GitHub URL)";
+    "Announce: Resume Creation workflow" -> "Ask: AI-fill or user-fill\npersonal info & education?";
+    "Ask: AI-fill or user-fill\npersonal info & education?" -> "Present info template for\nuser to fill at once" [label="AI fills"];
+    "Ask: AI-fill or user-fill\npersonal info & education?" -> "Use placeholders in\nresume header" [label="User fills"];
+    "Present info template for\nuser to fill at once" -> "Collect project sources\n(local path or GitHub URL)";
+    "Use placeholders in\nresume header" -> "Collect project sources\n(local path or GitHub URL)";
     "Collect project sources\n(local path or GitHub URL)" -> "AI analyzes project code";
     "AI analyzes project code" -> "Generate project description draft";
     "Generate project description draft" -> "User reviews project descriptions";
@@ -62,37 +64,72 @@ digraph resume_creation {
 
 ## Phase 1: Information Collection
 
-**ONE question at a time.** Do not batch questions. Wait for user response before asking the next.
+### Step 1: Ask How to Handle Personal Info & Education
 
-### Personal Information (ask sequentially)
+Ask the user ONE question:
 
-1. **Full name** — "What is your full name as it should appear on the resume?"
-2. **Phone** — "What phone number should be listed?"
-3. **Email** — "What email address should be listed?"
-4. **GitHub** — "What is your GitHub username or profile URL?" (optional)
-5. **Avatar** — "Do you want to include a profile photo? If yes, provide the image URL." (optional)
+> "Would you like me to generate the personal info and education sections, or will you fill them in yourself later?
+> - **AI generates** — I'll provide a template for you to fill out all at once, then I'll format it into the resume
+> - **I'll fill in myself** — I'll leave placeholders in the resume for you to fill in later"
 
-### Education (ask sequentially)
+### Step 2A: AI Generates (Template-Based Collection)
 
-6. **University** — "What university did you attend?"
-7. **Degree and major** — "What degree and major? (e.g., Bachelor of Science, Computer Science)"
-8. **Date range** — "When did you start and graduate? (e.g., Sept 2020 - June 2024)"
-9. **Awards** — "Any notable awards or honors?" (optional)
-10. **Campus experience** — "Any relevant campus activities or leadership roles?" (optional)
+If the user chooses AI generation, present this template for them to fill out **all at once**:
 
-### Project Sources (critical step)
+```
+请填写以下信息（可选字段可留空）：
 
-11. **Project source** — "Please provide the project you want on your resume. You can give me:
-   - A local directory path (I'll read the code and README)
-   - A GitHub repository URL
-   - A description of the project (least preferred — I'll ask follow-up questions)"
+姓名：
+学校：
+学历与专业：（如：本科 - 人工智能专业）
+就读时间：（如：2020.09 - 2024.06）
+手机号：
+微信号：
+邮箱：
+GitHub：（可选，格式：github.com/username）
+个人网站/博客：（可选）
+头像图片URL：（可选，留空则不显示）
+
+奖项与荣誉：（可选，多个用逗号分隔）
+校园经历：（可选，如：担任XX社团负责人）
+```
+
+**The user fills out the entire template in one response.** Do NOT ask each field individually.
+
+If the user leaves optional fields blank, omit them from the resume. Do NOT invent content.
+
+### Step 2B: User Fills In Themselves (Placeholder Mode)
+
+If the user chooses self-fill, use placeholders in the resume:
+
+```markdown
+# [Your Name]
+
+> <span alt="icon">&#xe60f;</span> `[Phone Number]`&emsp;&emsp; <span alt="icon">&#xe7ca;</span> `[Email]`&emsp;&emsp; <span alt="icon">&#xe600;</span> [GitHub Link]
+
+## &#xe80c; Education
+
+<div alt="entry-title">
+    <h3>[University] - [Degree] - [Major]</h3>
+    <p>[Start Date] - [End Date]</p>
+</div>
+```
+
+### Step 3: Collect Project Sources
+
+After personal info is handled, ask about projects **one project at a time**:
+
+> "Please provide the first project you want on your resume. You can give me:
+> - A local directory path (I'll read the code and README)
+> - A GitHub repository URL
+> - A description of the project (least preferred — I'll ask follow-up questions)"
 
 **For each project, collect:**
 - Project name
 - Source (directory / URL / description)
 - Their role in the project
 
-**After collecting all projects:** "Any more projects to add? If not, I'll analyze each project's code."
+**After each project:** "Any more projects to add? If not, I'll analyze each project's code."
 
 ## Phase 2: Project Analysis
 
@@ -257,4 +294,4 @@ Present complete draft for user review:
 | "One review round is enough" | It never is. First drafts always have issues. |
 | "I'll generate a complete resume first, then review" | No. Draft project descriptions first, review each, then assemble. |
 | "The checklist is overkill for a simple resume" | Simple resumes still have format errors. Run the checklist. |
-| "I don't need to ask one question at a time" | Batching questions overwhelms users and produces incomplete answers. |
+| "I don't need to provide a template, I'll ask one by one" | Batching personal info in a template is faster and less tedious. One-at-a-time is for projects, not form fields. |
