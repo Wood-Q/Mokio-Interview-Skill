@@ -61,14 +61,13 @@ digraph resume_polish {
 
 **If the user's resume is already in a LapisCV project directory**, skip this step.
 
-**If the resume is a standalone .md file without CSS/fonts**, you MUST download LapisCV:
+**If the resume is a standalone .md file without CSS/fonts**, download LapisCV:
 
 ```bash
-curl -L -o lapis-cv.zip "https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip"
-unzip lapis-cv.zip -d lapis-cv-project
+bash skills/mokio-interview-skill/scripts/download-lapiscv.sh [target_dir]
 ```
 
-Then move the resume .md file INTO the `lapis-cv-project/` directory so CSS/fonts render correctly.
+Then move the resume .md file INTO the target directory so CSS/fonts render correctly.
 
 ## Phase 2: Read and Validate
 

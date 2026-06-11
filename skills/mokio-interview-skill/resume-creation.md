@@ -70,19 +70,18 @@ digraph resume_creation {
 
 ### Download and Setup
 
+Run the download script from the skill directory:
+
 ```bash
-# 1. Download LapisCV VS Code extension zip
-curl -L -o lapis-cv.zip "https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip"
-
-# 2. Unzip to project directory
-unzip lapis-cv.zip -d lapis-cv-project
-
-# 3. Resume .md file will be placed INSIDE lapis-cv-project/
+bash skills/mokio-interview-skill/scripts/download-lapiscv.sh [target_dir]
 ```
 
-After downloading, verify the directory structure contains `lapis-cv/styles/` and `lapis-cv/fonts/`. If missing, the download failed — retry.
+- `target_dir` is optional (default: `./lapis-cv-project`)
+- If LapisCV is already downloaded, the script will detect it and skip
 
 **If the user already has a LapisCV project directory**, ask where it is and use that instead of downloading again.
+
+After running the script, the resume .md file MUST be saved inside the target directory (alongside `lapis-cv/styles/` and `lapis-cv/fonts/`).
 
 ## Phase 2: Information Collection
 

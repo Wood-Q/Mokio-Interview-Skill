@@ -8,18 +8,16 @@ LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, an
 
 **Download link:** https://github.com/BingyanStudio/LapisCV/releases
 
-**Download and setup steps:**
+**Download and setup:**
 
 ```bash
-# 1. Download the latest VS Code extension zip from Releases page
-curl -L -o lapis-cv.zip "https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip"
-
-# 2. Unzip
-unzip lapis-cv.zip -d lapis-cv-project
-
-# 3. The resume Markdown file goes INSIDE the unzipped project directory
-#    alongside lapis-cv/ (which contains styles/ and fonts/)
+bash skills/mokio-interview-skill/scripts/download-lapiscv.sh [target_dir]
 ```
+
+- `target_dir` is optional (default: `./lapis-cv-project`)
+- The script will skip if LapisCV is already downloaded
+
+Or download manually from: https://github.com/BingyanStudio/LapisCV/releases
 
 **Directory structure after download:**
 

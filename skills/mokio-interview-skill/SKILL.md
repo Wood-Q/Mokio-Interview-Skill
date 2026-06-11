@@ -109,7 +109,7 @@ All resumes MUST follow LapisCV Markdown format. See lapiscv-template.md for the
 
 **LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and rendering configuration.** A standalone .md file will NOT produce a proper resume. You MUST:
 
-1. **Download the LapisCV project** from https://github.com/BingyanStudio/LapisCV/releases before creating or polishing any resume
+1. **Download the LapisCV project** by running `bash skills/mokio-interview-skill/scripts/download-lapiscv.sh` before creating or polishing any resume
 2. **Place the resume .md file inside the LapisCV project directory** (alongside `lapis-cv/styles/` and `lapis-cv/fonts/`)
 3. **To export PDF:** Open the .md in VS Code, preview with styles applied, then print to PDF
 
@@ -170,5 +170,6 @@ Load sub-files ONLY when the corresponding workflow is dispatched:
 | mock-interview.md | Mock Interview workflow dispatched |
 | lapiscv-template.md | Any resume output (creation or polish) |
 | interview-question-bank.md | Mock Interview workflow dispatched |
+| scripts/download-lapiscv.sh | Resume Creation or Polish workflow — run before generating any resume |
 
 **Do NOT load all files at startup.** Progressive disclosure saves context.
