@@ -1,318 +1,334 @@
-# Resume Polish Workflow
+# 简历润色工作流
 
-## Overview
+## 概述
 
-Improve an existing resume through systematic seven-dimension analysis and iterative refinement.
+通过系统化的七维分析和迭代改进，优化现有简历。
 
-**Core principle:** Diagnose before prescribing. Analyze weaknesses first, then prioritize fixes.
+**核心原则：** 先诊断后开方。先分析弱点，再优先修复。
 
-**Violating the letter of this process is violating the spirit of this process.**
+**违反流程的字面意思就是违反流程的精神。**
 
-## The Iron Law
+## 铁律
 
 ```
-NO MODIFICATIONS WITHOUT ANALYSIS FIRST
+没有分析就不能修改
 ```
 
-Start rewriting without analyzing? Delete changes. Start over.
+没有分析就开始改写？删除修改。重做。
 
-**No exceptions:**
-- Don't "improve as you go" — analyze everything first
-- Don't skip dimensions because "the resume looks fine"
-- Don't apply fixes without showing the user the analysis
-- Don't produce final output without at least 2 review rounds
+**无例外：**
+- 不要"边改边看"——先全面分析
+- 不要因为"简历看起来还行"就跳过维度
+- 不要在不向用户展示分析的情况下应用修改
+- 不要在少于2轮审核的情况下输出最终结果
 
-## Process Flow
+## 流程图
 
 ```dot
 digraph resume_polish {
     rankdir=TB;
-    "Announce: Resume Polish workflow" [shape=box, style=filled, fillcolor="#ccccff"];
-    "Copy LapisCV assets to\nworking directory (if missing)" [shape=box, style=filled, fillcolor="#ffdddd"];
-    "Read existing resume file" [shape=box];
-    "Validate LapisCV format" [shape=box];
-    "Analyze 7 dimensions" [shape=box, style=filled, fillcolor="#ffffcc"];
-    "Produce analysis report\n(severity-ranked)" [shape=box];
-    "User selects priorities" [shape=diamond];
-    "Apply fixes (highest priority first)" [shape=box];
-    "User reviews each fix" [shape=diamond];
-    "Revise if needed" [shape=box];
-    "Run Product Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
-    "Save polished .md file" [shape=doublecircle];
+    "宣布：简历润色流程" [shape=box, style=filled, fillcolor="#ccccff"];
+    "复制 LapisCV 资源到\n工作目录（如缺失）" [shape=box, style=filled, fillcolor="#ffdddd"];
+    "读取现有简历文件" [shape=box];
+    "验证 LapisCV 格式" [shape=box];
+    "分析7个维度" [shape=box, style=filled, fillcolor="#ffffcc"];
+    "生成分析报告\n（按严重程度排序）" [shape=box];
+    "用户选择优先级" [shape=diamond];
+    "应用修改（从最高优先级开始）" [shape=box];
+    "用户审核每个修改" [shape=diamond];
+    "如需则修改" [shape=box];
+    "运行产品检查清单" [shape=box, style=filled, fillcolor="#ffcccc"];
+    "保存润色后的 .md 文件" [shape=doublecircle];
 
-    "Announce: Resume Polish workflow" -> "Copy LapisCV assets to\nworking directory (if missing)";
-    "Copy LapisCV assets to\nworking directory (if missing)" -> "Read existing resume file";
-    "Read existing resume file" -> "Validate LapisCV format";
-    "Validate LapisCV format" -> "Analyze 7 dimensions";
-    "Analyze 7 dimensions" -> "Produce analysis report\n(severity-ranked)";
-    "Produce analysis report\n(severity-ranked)" -> "User selects priorities";
-    "User selects priorities" -> "Apply fixes (highest priority first)";
-    "Apply fixes (highest priority first)" -> "User reviews each fix";
-    "User reviews each fix" -> "Revise if needed" [label="Modify/Regenerate"];
-    "User reviews each fix" -> "Run Product Checklist" [label="All accepted"];
-    "Revise if needed" -> "User reviews each fix";
-    "Run Product Checklist" -> "Save polished .md file" [label="All pass"];
-    "Run Product Checklist" -> "Fix violations" [label="Any fail"];
-    "Fix violations" -> "Run Product Checklist";
+    "宣布：简历润色流程" -> "复制 LapisCV 资源到\n工作目录（如缺失）";
+    "复制 LapisCV 资源到\n工作目录（如缺失）" -> "读取现有简历文件";
+    "读取现有简历文件" -> "验证 LapisCV 格式";
+    "验证 LapisCV 格式" -> "分析7个维度";
+    "分析7个维度" -> "生成分析报告\n（按严重程度排序）";
+    "生成分析报告\n（按严重程度排序）" -> "用户选择优先级";
+    "用户选择优先级" -> "应用修改（从最高优先级开始）";
+    "应用修改（从最高优先级开始）" -> "用户审核每个修改";
+    "用户审核每个修改" -> "如需则修改" [label="修改/重新生成"];
+    "用户审核每个修改" -> "运行产品检查清单" [label="全部接受"];
+    "如需则修改" -> "用户审核每个修改";
+    "运行产品检查清单" -> "保存润色后的 .md 文件" [label="全部通过"];
+    "运行产品检查清单" -> "修复违规项" [label="有未通过项"];
+    "修复违规项" -> "运行产品检查清单";
 }
 ```
 
-## Phase 1: Setup LapisCV Environment
+## 阶段1：设置 LapisCV 环境
 
-**If the user's working directory already has `lapis-cv/styles/` and `lapis-cv/fonts/`**, skip this step.
+**如果用户的工作目录已有 `lapis-cv/styles/` 和 `lapis-cv/fonts/`**，跳过此步骤。
 
-**If not**, copy LapisCV assets from the skill directory into the user's current working directory:
+**如果没有**，从技能目录复制 LapisCV 资源到用户当前工作目录：
 
 ```bash
+SKILL_DIR="skills/mokio-interview-skill"
 cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/.vscode" ./
 cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/lapis-cv" ./
+cp "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/template-cn.md" ./
+cp "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/template-en.md" ./
 ```
 
-Files MUST be copied flat (not into a subdirectory) because `.vscode/settings.json` uses relative paths like `./lapis-cv/styles/...`.
+文件必须平铺复制（不放入子目录），因为 `.vscode/settings.json` 使用相对路径如 `./lapis-cv/styles/...`。
 
-## Phase 2: Read and Validate
+## 阶段2：读取和验证
 
-### Read the Resume
+### 读取简历
 
-Ask the user for the resume file path. Read the entire file.
+向用户询问简历文件路径。读取整个文件。
 
-**If the file doesn't exist or can't be read:** Ask again. Don't fabricate content.
+**如果文件不存在或无法读取：** 再次询问。不要编造内容。
 
-### Format Validation
+### 格式验证
 
-Check LapisCV format compliance:
+检查 LapisCV 格式合规性：
 
-- [ ] `h1` present (name)
-- [ ] `blockquote` present (contact info with icons)
-- [ ] Section headers use `h2` + icon prefix
-- [ ] Entry titles use `div alt="entry-title"`
-- [ ] Date format is consistent
+- [ ] `h1` 存在（姓名）
+- [ ] `blockquote` 存在（带图标的联系方式）
+- [ ] 章节标题使用 `h2` + 图标前缀
+- [ ] 条目标题使用 `div alt="entry-title"`
+- [ ] 日期格式一致
 
-**If format is severely broken:** Tell the user. Offer to restructure by copying from `assets/lapis-cv-vscode-v2.0.1/template-cn.md` (or `template-en.md`) and migrating their content into the template before polishing.
+**如果格式严重损坏：** 告知用户。提供从 `assets/lapis-cv-vscode-v2.0.1/template-cn.md`（或 `template-en.md`）复制模板并迁移其内容后再润色的选项。
 
-## Phase 2: Six-Dimension Analysis
+## 阶段3：七维分析
 
-**Analyze EVERY dimension.** Skipping a dimension = incomplete diagnosis. 7 dimensions total.
+**分析每个维度。** 跳过维度 = 不完整的诊断。共7个维度。
 
-**Red Flags — STOP and Complete Analysis:**
-- "The resume looks fine, I'll just fix the obvious stuff" — Missing systematic weaknesses
-- "I don't need to ask what role they're targeting" — Keywords depend on the role
-- "I'll skip this dimension since it seems okay" — "Seems okay" ≠ verified okay
-- "I can assess content without reading project code" — Format yes, content depth no
-- "This dimension doesn't apply to this resume" — All 6 apply to every resume
-- "I'll batch the fixes instead of analyzing first" — Diagnose before prescribing
+**红旗 —— 停止并完成分析：**
+- "简历看起来还行，我就修修明显的问题"——遗漏系统性弱点
+- "我不需要问他们目标什么岗位"——关键词取决于岗位
+- "这个维度看起来没问题我就跳过了"——"看起来没问题" ≠ 验证过没问题
+- "我不读项目代码也能评估内容"——格式可以，内容深度不行
+- "这个维度不适用于这份简历"——7个维度适用于每份简历
+- "我批量修复而不是先分析"——先诊断后开方
 
-### Dimension 1: Quantification
+### 维度1：量化程度
 
-**Check:** Does each bullet point include measurable results?
+**检查：** 每个要点是否包含可量化的结果？
 
-| Rating | Criteria |
+| 评级 | 标准 |
 |--------|----------|
-| Strong | >80% of bullets have numbers (%, count, time, size) |
-| Adequate | 50-80% of bullets have numbers |
-| Weak | <50% of bullets have numbers |
+| 强 | >80% 的要点包含数字（%、数量、时间、规模） |
+| 中 | 50-80% 的要点包含数字 |
+| 弱 | <50% 的要点包含数字 |
 
-**Common issues:**
-- "Improved performance" → improved by how much?
-- "Reduced latency" → from X to Y?
-- "Managed a team" → how many people?
-- "Built a feature" → how many users? what scale?
+**常见问题：**
+- "提升了性能" → 提升了多少？
+- "降低了延迟" → 从X降到Y？
+- "管理团队" → 多少人？
+- "开发了一个功能" → 多少用户？什么规模？
 
-### Dimension 2: STAR Method
+### 维度2：STAR 方法
 
-**Check:** Do bullet points follow Situation-Task-Action-Result structure?
+**检查：** 要点是否遵循情境-任务-行动-结果结构？
 
-| Rating | Criteria |
+| 评级 | 标准 |
 |--------|----------|
-| Strong | Most bullets clearly convey context, action, and result |
-| Adequate | Bullets have action and some result, but lack context |
-| Weak | Bullets list duties without outcomes |
+| 强 | 大部分要点清楚传达了背景、行动和结果 |
+| 中 | 要点有行动和部分结果，但缺少背景 |
+| 弱 | 要点只列举职责而没有成果 |
 
-**Common issues:**
-- Only describes what was done, not why or what resulted
-- Lists responsibilities instead of achievements
-- Missing the "so what?" — why did this matter?
+**常见问题：**
+- 只描述做了什么，没有为什么或结果如何
+- 列举职责而非成就
+- 缺少"那又怎样？"——为什么这很重要？
 
-### Dimension 3: Keyword Coverage
+### 维度3：关键词覆盖
 
-**Check:** Does the resume include keywords from the target role?
+**检查：** 简历是否包含目标岗位的关键词？
 
-**Process:**
-1. Ask the user: "What type of role are you targeting? (e.g., Frontend Engineer, Backend Engineer, Full-Stack, DevOps, etc.)"
-2. Check for presence of relevant keywords in the resume
-3. Identify missing keywords that should appear
+**流程：**
+1. 询问用户："你的目标岗位是什么？（如：前端工程师、后端工程师、全栈、DevOps 等）"
+2. 检查简历中相关关键词的存在
+3. 识别应出现但缺失的关键词
 
-**Common issues:**
-- Missing framework/library names that are in the project code
-- Using generic terms instead of specific technologies
-- Skills section doesn't match technologies used in projects
+**常见问题：**
+- 缺少项目代码中使用的前端框架/库名称
+- 使用泛泛术语而非具体技术
+- 专业技能部分与项目中使用的技术不匹配
 
-### Dimension 4: Format Consistency
+### 维度4：格式一致性
 
-**Check:** Is the LapisCV format correct and consistent?
+**检查：** LapisCV 格式是否正确且一致？
 
-| Check | What to Look For |
+| 检查项 | 查找内容 |
 |-------|-----------------|
-| Icon codes | All `&#xeXXXX;` codes correct for their purpose |
-| Entry titles | All wrapped in `div alt="entry-title"` |
-| Dates | Consistent format across all entries |
-| Bullet style | Consistent use of `- **Bold**: content` |
-| Section order | Logical flow (Education → Work → Projects → Skills) |
+| 图标代码 | 所有 `&#xeXXXX;` 代码是否正确 |
+| 条目标题 | 是否都包裹在 `div alt="entry-title"` 中 |
+| 日期 | 所有条目的日期格式是否一致 |
+| 要点样式 | 是否一致使用 `- **加粗**: 内容` |
+| 章节顺序 | 逻辑流程（教育 → 工作 → 项目 → 技能） |
 
-### Dimension 5: Redundancy and Gaps
+### 维度5：冗余和缺失
 
-**Check:** Is there unnecessary content? Are important experiences missing?
+**检查：** 是否有不必要的内容？是否有重要经历缺失？
 
-**Redundancy signals:**
-- Same technology mentioned in multiple bullet points without new context
-- Vague soft skills ("team player", "hard worker") taking up space
-- Outdated or irrelevant experience
-- Bullet points that say the same thing differently
+**冗余信号：**
+- 同一技术在不同要点中提及但没有新上下文
+- 模糊的软技能（"团队合作"、"努力工作"）占据空间
+- 过时或不相关的经历
+- 不同要点说的是同一件事
 
-**Gap signals:**
-- Projects mentioned in work experience but not in Projects section (or vice versa)
-- Technologies used in projects but missing from Skills section
-- Significant time gaps not explained
-- Missing achievements that would be expected for the role level
+**缺失信号：**
+- 工作经验中提到的项目但在项目经历部分没有（或反之）
+- 项目中使用的技术但在专业技能部分缺失
+- 未解释的显著时间间隔
+- 缺少该岗位级别应有的成就
 
-### Dimension 6: Verb Strength
+### 维度6：动词力度
 
-**Check:** Are bullet points using strong, specific action verbs?
+**检查：** 要点是否使用了有力、具体的行动动词？
 
-**Weak verbs to replace:**
-| Weak | Strong Alternatives |
+**需要替换的弱动词：**
+| 弱动词 | 强动词替代 |
 |------|-------------------|
-| Worked on | Led, Implemented, Developed, Built |
-| Helped with | Designed, Optimized, Automated, Architected |
-| Was responsible for | Managed, Directed, Coordinated, Owned |
-| Participated in | Contributed to, Drove, Spearheaded |
-| Assisted with | Enabled, Facilitated, Supported |
-| Involved in | Executed, Delivered, Shipped |
+| 参与了 | 主导、实现、开发、构建 |
+| 协助了 | 设计、优化、自动化、架构 |
+| 负责了 | 管理、指导、协调、负责 |
+| 参与了 | 贡献、推动、牵头 |
+| 辅助了 | 促成、支持、保障 |
+| 涉及了 | 执行、交付、上线 |
 
-**Every weak verb MUST be flagged.** No exceptions.
+**每个弱动词都必须标记。** 无例外。
 
-### Dimension 7: Project Structure
+### 维度7：项目结构
 
-**Check:** Does each project entry follow the "Background → Solution → Result" structure?
+**检查：** 每个项目条目是否遵循"项目背景 → 解决方案 → 项目成果"结构？
 
-**The ideal project entry structure** (derived from high-performing technical resumes):
+**理想的项目条目结构**（源自高性能技术简历）：
 
 ```
-## &#xe635; Projects
+## &#xe635; 项目经历
 
 <div alt="entry-title">
-    <h3>Project Name</h3>
-    <a href="URL">link</a>
+    <h3>项目名称</h3>
+    <a href="URL">链接</a>
 </div>
 
-**Project Background:** One sentence explaining the problem context and why it matters.
+**项目背景：** 一句话解释问题背景和为什么重要。
 
-**Solution:** Bullet points describing what YOU did, with technical specifics and architecture decisions.
+**解决方案：** 要点列表，描述你做了什么，包含技术细节和架构决策。
 
-**Result:** Quantified outcomes — metrics, improvements, deliverables.
+**项目成果：** 量化的结果——指标、改进、交付物。
 ```
 
-**Why this structure works:**
-- **Background** gives the interviewer context for follow-up questions
-- **Solution** demonstrates technical depth and personal contribution
-- **Result** proves impact with evidence
+**为什么这个结构有效：**
+- **项目背景** 给面试官追问的上下文
+- **解决方案** 展示技术深度和个人贡献
+- **项目成果** 用证据证明影响
 
-**Common structural issues:**
+**常见结构问题：**
 
-| Issue | Example | Fix |
+| 问题 | 示例 | 修复 |
 |-------|---------|-----|
-| No background | Jumps straight into "Implemented X" | Add one sentence: what problem existed and why it mattered |
-| Mixed background and solution | "The system had latency issues so I optimized the query" | Separate: "System had P99 latency >800ms" (background) → "Optimized query with composite indexes" (solution) |
-| No results | "Implemented caching with Redis" | Add: "reducing P99 latency from 800ms to 120ms" |
-| Results without context | "Improved performance by 85%" | 85% of what? Add baseline: "from 2min to 1min response time" |
-| Solution lists technologies without explaining decisions | "Used Redis, Kafka, and PostgreSQL" | Explain WHY: "Chose Redis for hot-key caching over Memcached due to persistence requirements" |
-| Group achievements without individual contribution | "Team built a platform handling 10K users" | Clarify YOUR role: "Led backend architecture for a platform handling 10K concurrent users" |
+| 没有背景 | 直接跳到"实现了X" | 加一句：存在什么问题，为什么重要 |
+| 背景和解决方案混在一起 | "系统有延迟问题所以我优化了查询" | 分开："系统 P99 延迟 >800ms"（背景）→ "使用复合索引优化查询"（解决方案） |
+| 没有成果 | "使用 Redis 实现了缓存" | 加上："将 P99 延迟从 800ms 降至 120ms" |
+| 成果没有上下文 | "性能提升了85%" | 85%的什么？加上基线："响应时间从2分钟降至1分钟" |
+| 解决方案列举技术但不解释决策 | "使用了 Redis、Kafka 和 PostgreSQL" | 解释为什么："选择 Redis 做热键缓存而非 Memcached，因为需要持久化" |
+| 团队成果没有个人贡献 | "团队构建了支撑1万用户的平台" | 说明你的角色："主导平台后端架构，支撑1万并发用户" |
 
-**The "2-minute pitch" test:** For each project, the entry should contain enough information that the candidate could explain the complete chain in 2 minutes:
-1. What problem existed → 2. What I decided to do → 3. How I did it (with specifics) → 4. What resulted
+**"2分钟电梯演讲"测试：** 对每个项目，条目应包含足够信息，使候选人能在2分钟内解释完整链条：
+1. 存在什么问题 → 2. 我决定做什么 → 3. 我怎么做的（具体细节）→ 4. 结果如何
 
-If any link is missing, the project entry is incomplete.
+如果缺少任何环节，项目条目不完整。
 
-**Entry-level vs. experienced distinction:**
+**实习与经验的区分：**
 
-For internships and early-career entries, the background may be implicit ("Team project for X course"). For industry experience, the background MUST explain the business context and why the project was needed.
+对于实习和初级岗位，背景可能是隐含的（"X课程的团队项目"）。对于工作经验，背景必须解释业务背景和项目为什么需要。
 
-**Red Flags for project structure:**
-- Project entry is just a list of technologies with no narrative
-- No separation between "what the team did" and "what I did"
-- Results section is empty or has only vague claims
-- Background is missing — reader doesn't know why the project exists
-- Solution describes the system but not the candidate's specific decisions
+**项目结构的红旗：**
+- 项目条目只是技术列表，没有叙述
+- 没有区分"团队做了什么"和"我做了什么"
+- 成果部分为空或只有模糊声明
+- 缺少背景——读者不知道项目为什么存在
+- 解决方案描述系统但不描述候选人的具体决策
 
-## Phase 3: Analysis Report
+## 阶段4：分析报告
 
-Present findings as a severity-ranked report:
+以严重程度排序的方式展示发现：
 
 ```markdown
-# Resume Analysis Report
+# 简历分析报告
 
-## 🔴 Critical (Fix First)
-- [Dimension X] Issue description — suggested fix
+## 🔴 严重（优先修复）
+- [维度X] 问题描述 — 建议修复方式
 
-## 🟡 Important (Fix Next)
-- [Dimension X] Issue description — suggested fix
+## 🟡 重要（其次修复）
+- [维度X] 问题描述 — 建议修复方式
 
-## 🟢 Minor (Fix If Time)
-- [Dimension X] Issue description — suggested fix
+## 🟢 轻微（有时间再修）
+- [维度X] 问题描述 — 建议修复方式
 
-## Summary
-| Dimension | Rating | Key Finding |
+## 总结
+| 维度 | 评级 | 核心发现 |
 |-----------|--------|-------------|
-| Quantification | Weak/Adequate/Strong | One-line summary |
-| STAR Method | Weak/Adequate/Strong | One-line summary |
-| Keywords | Weak/Adequate/Strong | One-line summary |
-| Format | Weak/Adequate/Strong | One-line summary |
-| Redundancy/Gaps | Weak/Adequate/Strong | One-line summary |
-| Verb Strength | Weak/Adequate/Strong | One-line summary |
-| Project Structure | Weak/Adequate/Strong | One-line summary |
+| 量化程度 | 弱/中/强 | 一句话总结 |
+| STAR 方法 | 弱/中/强 | 一句话总结 |
+| 关键词 | 弱/中/强 | 一句话总结 |
+| 格式 | 弱/中/强 | 一句话总结 |
+| 冗余/缺失 | 弱/中/强 | 一句话总结 |
+| 动词力度 | 弱/中/强 | 一句话总结 |
+| 项目结构 | 弱/中/强 | 一句话总结 |
 ```
 
-**Ask the user:**
+**询问用户：**
 
-> "Here's your resume analysis. Which issues would you like me to fix? You can say:
-> - **All** — Fix everything from critical to minor
-> - **Critical + Important** — Fix red and yellow items only
-> - **Specific items** — Tell me which ones (e.g., 'Fix quantification and verb strength')
-> - **Custom** — Tell me what you want changed"
+> "这是你的简历分析。你想让我修复哪些问题？你可以说：
+> - **全部** — 从严重到轻微全部修复
+> - **严重 + 重要** — 只修复红色和黄色项目
+> - **指定项目** — 告诉我哪些（如"修复量化程度和动词力度"）
+> - **自定义** — 告诉我你想改什么"
 
-## Phase 4: Iterative Fixes
+## 阶段5：迭代修复
 
-Apply fixes one section at a time, from highest to lowest priority.
+从最高优先级到最低优先级，逐部分应用修复。
 
-**After each section fix, present:**
+**每个部分修复后，展示：**
 
-> **Section: [Name]**
+> **部分：[名称]**
 >
-> Before:
+> 修改前：
 > ```
-> [original bullet points]
-> ```
->
-> After:
-> ```
-> [revised bullet points]
+> [原始要点]
 > ```
 >
-> **Accept** / **Modify** / **Regenerate**
+> 修改后：
+> ```
+> [修改后的要点]
+> ```
+>
+> **接受** / **修改** / **重新生成**
 
-**Do NOT apply all fixes at once.** Show each change. Let the user accept or reject.
+**不要一次应用所有修复。** 逐个展示每个修改。让用户接受或拒绝。
 
-## Phase 5: Product Checklist
+## 阶段6：产品检查清单
 
-Run the same Product Checklist from resume-creation.md before saving.
+保存前运行 resume-creation.md 中相同的产品检查清单。
 
-## Common Rationalizations
+## 导出 PDF
 
-| Excuse | Reality |
+润色后的简历 .md 文件保存后，提示用户如何导出 PDF：
+
+> **简历已保存！** 如需导出 PDF 文档，请按以下步骤操作：
+>
+> 1. 在 VS Code 扩展商店搜索并安装 **Markdown PDF** 插件
+> 2. 在 VS Code 中打开保存的简历 .md 文件
+> 3. 右键点击编辑器 → 选择 **Markdown PDF: Export (pdf)**
+> 4. PDF 文件将自动生成在同目录下
+
+**注意：** 确保简历 .md 文件与 `lapis-cv/` 和 `.vscode/` 在同一目录，否则样式无法加载。
+
+## 常见借口
+
+| 借口 | 事实 |
 |--------|---------|
-| "The resume looks fine, I'll just make a few tweaks" | "Looks fine" hides systematic weaknesses. Analyze all 6 dimensions. |
-| "I don't need to ask what role they're targeting" | Keywords depend on the role. You can't assess coverage without knowing the target. |
-| "I'll fix everything at once, it's faster" | Faster for you, worse for the user. They can't review 20 changes at once. |
-| "Weak verbs are a minor issue" | Weak verbs make every bullet point weaker. Every one must be flagged. |
-| "The format looks close enough" | "Close enough" breaks rendering. Every icon code, every div must be correct. |
-| "I can assess the resume without reading the project code" | You can assess format, not content depth. Read code when possible. |
+| "简历看起来还行，我就做点微调" | "看起来还行"隐藏了系统性弱点。分析全部7个维度。 |
+| "我不需要问他们目标什么岗位" | 关键词取决于岗位。你不知道目标就无法评估覆盖度。 |
+| "我一次修完，更快" | 对你更快，对用户更差。他们无法一次审核20个修改。 |
+| "弱动词是小问题" | 弱动词让每个要点都变弱。每一个都必须标记。 |
+| "格式看起来差不多了" | "差不多"会破坏渲染。每个图标代码、每个 div 都必须正确。 |
+| "我不读项目代码也能评估简历" | 你能评估格式，不能评估内容深度。可能的话读代码。 |

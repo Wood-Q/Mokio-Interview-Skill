@@ -1,249 +1,249 @@
-# Interview Question Bank
+# 面试题库
 
-Question templates and evaluation criteria for mock interviews. Use these as frameworks for generating resume-specific deep-dive questions.
+模拟面试的问题模板和评估标准。使用这些作为生成基于简历的深挖问题的框架。
 
-**Core principle:** These are TEMPLATES, not canned questions. Every question must be customized to the user's actual resume content. The deep-dive method probes each project from surface to depth across multiple topic layers.
+**核心原则：** 这些是模板，不是现成问题。每个问题必须根据用户的实际简历内容定制。深挖方法对每个项目从表面到深度跨越多个主题层进行探测。
 
-## Deep-Dive Topic Templates
+## 深挖主题模板
 
-### Topic Layer 1: Background & Role Boundary
+### 主题层1：项目背景与角色边界
 
-These questions establish whether the candidate truly understands the project context and can articulate their personal contribution.
+这些问题建立候选人是否真正理解项目背景，能否表达个人贡献。
 
-| Question Template | What It Probes |
+| 问题模板 | 探测方向 |
 |------------------|---------------|
-| What specific problem does [project] solve? What pain existed before? | Understanding of project purpose |
-| What was the traditional approach? Why was it insufficient? | Understanding of motivation |
-| What specifically did YOU do vs. the team? Data, training, RAG, tools, evaluation — which parts? | Role clarity and ownership |
-| Which capabilities came from the model itself vs. RAG/Tool/rules system? | System architecture understanding |
-| What was the project's deployment status — offline, gray release, or production? | Real-world impact awareness |
-| If the interviewer gives you 2 minutes, can you explain the complete chain? | Communication and synthesis ability |
+| [项目]具体解决什么问题？之前存在什么痛点？ | 对项目目的的理解 |
+| 传统方案是什么？为什么不够？ | 对动机的理解 |
+| 你具体做了什么 vs. 团队？数据、训练、RAG、工具、评估——哪些部分？ | 角色清晰度和所有权 |
+| 哪些能力来自模型本身 vs. RAG/工具/规则系统？ | 系统架构理解 |
+| 项目的部署状态是什么——离线、灰度还是生产？ | 现实影响意识 |
+| 如果面试官给你2分钟，你能解释完整链条吗？ | 沟通和综合能力 |
 
-**Good answer signals:** Clear problem statement, specific personal contribution, awareness of system boundaries.
-**Bad answer signals:** Vague "we built X", unclear role boundary, can't articulate why the project was needed.
+**好的回答信号：** 清晰的问题陈述、具体的个人贡献、对系统边界的认知。
+**差的回答信号：** 模糊的"我们做了X"、角色边界不清、无法表达项目为什么需要。
 
-### Topic Layer 2: Architecture & Design Decisions
+### 主题层2：架构与设计决策
 
-These questions probe whether the candidate understands WHY, not just WHAT.
+这些问题探测候选人是否理解为什么，而不仅仅是做了什么。
 
-| Question Template | What It Probes |
+| 问题模板 | 探测方向 |
 |------------------|---------------|
-| Why did you choose [approach] over [alternatives]? | Design reasoning |
-| What trade-offs did you make? What did you give up? | Trade-off awareness |
-| What would break if [metric/users/data] increased 10x? | Scalability thinking |
-| Walk me through how a request travels through the system end-to-end | System-level understanding |
-| What are the current bottlenecks? How would you address them? | Self-awareness and improvement thinking |
-| How did you decide between [option A] and [option B]? | Decision-making under uncertainty |
+| 为什么选择[方案]而不是[替代方案]？ | 设计推理 |
+| 你做了什么权衡？放弃了什么？ | 权衡意识 |
+| 如果[指标/用户/数据]增加10倍会坏什么？ | 可扩展性思维 |
+| 带我走一遍请求如何在系统中端到端流转 | 系统级理解 |
+| 当前瓶颈在哪？你会怎么解决？ | 自我认知和改进思维 |
+| 你在[选项A]和[选项B]之间怎么决定的？ | 不确定性下的决策能力 |
 
-**Good answer signals:** Discusses multiple alternatives, explains reasoning, acknowledges limitations.
-**Bad answer signals:** States choice without reasoning, can't name alternatives, no awareness of limitations.
+**好的回答信号：** 讨论多个替代方案、解释推理、承认局限性。
+**差的回答信号：** 陈述选择没有推理、说不出替代方案、没有对局限性的认知。
 
-### Topic Layer 3: Data & Training (for ML/AI Projects)
+### 主题层3：数据与训练（ML/AI项目）
 
-These questions probe whether the candidate understands the full data and training lifecycle.
+这些问题探测候选人是否理解完整的数据和训练生命周期。
 
-| Question Template | What It Probes |
+| 问题模板 | 探测方向 |
 |------------------|---------------|
-| Where did the training data come from? How was it collected? | Data provenance |
-| How was data labeled? Who labeled it? How was label quality ensured? | Data quality |
-| How many training samples? Train/val/test split? Positive/negative ratio? | Data scale awareness |
-| What does each training sample contain? How are inputs and outputs structured? | Data format understanding |
-| How do you handle class imbalance? | Data engineering |
-| What loss mask strategy did you use? Which tokens have loss? | Training mechanics |
-| What training hyperparameters? (lr, batch size, epochs, max length) | Training configuration |
-| How did you determine LoRA rank/alpha/dropout? | Hyperparameter reasoning |
-| bf16, fp16, or fp32? Why? | Numerical precision understanding |
-| How did you prevent data leakage between train and test? | ML rigor |
+| 训练数据从哪来？怎么收集的？ | 数据溯源 |
+| 数据怎么标注的？谁标的？标注质量怎么保证？ | 数据质量 |
+| 多少训练样本？训练/验证/测试划分？正负样本比例？ | 数据规模意识 |
+| 每个训练样本包含什么？输入输出怎么组织的？ | 数据格式理解 |
+| 怎么处理类别不平衡？ | 数据工程 |
+| 用了什么 loss mask 策略？哪些 token 有 loss？ | 训练机制 |
+| 训练超参数是什么？（学习率、batch size、epoch数、最大长度） | 训练配置 |
+| LoRA 的 rank/alpha/dropout 怎么确定的？ | 超参数推理 |
+| bf16、fp16 还是 fp32？为什么？ | 数值精度理解 |
+| 怎么防止训练集和测试集之间数据泄露？ | ML 严谨性 |
 
-**Good answer signals:** Specific numbers, awareness of data quality issues, understanding of loss mask mechanics.
-**Bad answer signals:** "I don't remember the exact numbers", no awareness of class imbalance, can't explain loss mask.
+**好的回答信号：** 具体数字、对数据质量问题的意识、理解 loss mask 机制。
+**差的回答信号：** "我不记得具体数字"、没有类别不平衡意识、无法解释 loss mask。
 
-### Topic Layer 4: Technical Internals
+### 主题层4：技术内部原理
 
-These questions probe deep understanding of specific technologies claimed in the resume.
+这些问题探测对简历中声称的特定技术的深入理解。
 
-| Question Template | What It Probes |
+| 问题模板 | 探测方向 |
 |------------------|---------------|
-| How does [component X] work internally? | Internal mechanism understanding |
-| What happens when [component X] fails? | Failure mode awareness |
-| What are the alternatives to [component X]? Why this one? | Design choice justification |
-| How does [component X] interact with [component Y]? | System integration understanding |
-| Can you write/explain the core formula for [algorithm]? | Mathematical foundation |
-| How is [component X] implemented? Not the API, the internals. | Below-the-API understanding |
+| [组件X]内部是怎么工作的？ | 内部机制理解 |
+| [组件X]失败时会怎样？ | 失败模式意识 |
+| [组件X]的替代方案有哪些？为什么选这个？ | 设计选择论证 |
+| [组件X]和[组件Y]怎么交互的？ | 系统集成理解 |
+| 你能写/解释[算法]的核心公式吗？ | 数学基础 |
+| [组件X]是怎么实现的？不是 API，是内部实现。 | API 之下的理解 |
 
-**ML/AI Specific Internals:**
+**ML/AI 特定内部原理：**
 
-| Topic | Deep-Dive Questions |
+| 主题 | 深挖问题 |
 |-------|-------------------|
-| Transformer | Attention formula? Why divide by sqrt(d_k)? MHA vs MQA vs GQA? |
-| RoPE | Where is it applied? Why on Q/K not V? What happens with long context? |
-| LoRA | Core formula? Why B initialized to 0? How to merge weights? How to verify effectiveness? |
-| RAG | Chunking strategy? Embedding model? Why reranker after vector recall? Top-K reasoning? |
-| Tool Calling | How does the model know which tool to call? What if the tool fails? How to prevent model from fabricating observations? |
-| SFT Loss Mask | Which tokens have loss? System/user/assistant/tool call/tool observation? Why? |
-| DPO vs PPO | Data format difference? Reference model role? Why DPO is simpler? |
-| KV Cache | What is cached? Why not cache Query? Why it speeds up decode but doesn't change attention's length dependency? |
-| FlashAttention | Why does it save memory? Is it approximate? What's the core optimization? |
+| Transformer | Attention 公式？为什么除以 sqrt(d_k)？MHA vs MQA vs GQA？ |
+| RoPE | 在哪里应用的？为什么在 Q/K 上不在 V 上？长上下文会怎样？ |
+| LoRA | 核心公式？为什么 B 初始化为0？怎么合并权重？怎么验证有效性？ |
+| RAG | 分块策略？Embedding 模型？向量召回后为什么需要 reranker？Top-K 的理由？ |
+| Tool Calling | 模型怎么知道调哪个工具？工具调用失败怎么办？怎么防止模型编造观测结果？ |
+| SFT Loss Mask | 哪些 token 有 loss？system/user/assistant/tool call/tool observation？为什么？ |
+| DPO vs PPO | 数据格式区别？参考模型的作用？为什么 DPO 更简单？ |
+| KV Cache | 缓存了什么？为什么不缓存 Query？为什么加速 decode 但不改变 attention 的长度依赖？ |
+| FlashAttention | 为什么节省内存？是近似算法吗？核心优化是什么？ |
 
-**Good answer signals:** Can explain internals, not just API usage. Can write core formulas. Can discuss trade-offs.
-**Bad answer signals:** Only knows the API. Can't explain WHY. Recites documentation without understanding.
+**好的回答信号：** 能解释内部原理，不只是 API 用法。能写核心公式。能讨论权衡。
+**差的回答信号：** 只知道 API。不能解释为什么。背诵文档但不理解。
 
-### Topic Layer 5: Evaluation & Metrics
+### 主题层5：评估与指标
 
-These questions probe whether the candidate can rigorously evaluate their own work.
+这些问题探测候选人是否能严谨地评估自己的工作。
 
-| Question Template | What It Probes |
+| 问题模板 | 探测方向 |
 |------------------|---------------|
-| How do you define [metric]? Specifically, what counts as correct? | Metric definition rigor |
-| How large is the test set? Who labeled it? | Evaluation reliability |
-| Do you measure precision, recall, F1? Which matters more for your use case? | Metric awareness |
-| How do you do ablation? Prompt only → +RAG → +LoRA → full pipeline? | Scientific evaluation |
-| If the model makes an error, how do you trace which module caused it? | Debug methodology |
-| How do you monitor quality degradation in production? | Production awareness |
+| 你怎么定义[指标]？具体来说，什么算正确？ | 指标定义严谨性 |
+| 测试集多大？谁标的？ | 评估可靠性 |
+| 你衡量精确率、召回率、F1 吗？在你的场景中哪个更重要？ | 指标意识 |
+| 你怎么做消融？仅 prompt → +RAG → +LoRA → 完整流水线？ | 科学评估 |
+| 如果模型出错，你怎么追踪是哪个模块导致的？ | 调试方法论 |
+| 你怎么监控生产环境中的质量退化？ | 生产意识 |
 
-**Good answer signals:** Specific metric definitions, ablation methodology, Bad Case analysis, error tracing by module.
-**Bad answer signals:** "Accuracy went up" without definition, no ablation, can't trace errors to specific modules.
+**好的回答信号：** 具体的指标定义、消融方法论、Bad Case 分析、按模块的错误追踪。
+**差的回答信号：** "准确率提升了"没有定义、没有消融、无法追踪错误到具体模块。
 
-### Topic Layer 6: Failure Modes & Improvement
+### 主题层6：失败模式与改进
 
-These questions probe self-awareness and improvement ability — the most valuable interview signal.
+这些问题探测自我认知和改进能力——最有价值的面试信号。
 
-| Question Template | What It Probes |
+| 问题模板 | 探测方向 |
 |------------------|---------------|
-| Give me 3 real Bad Cases from this project. | Concrete failure awareness |
-| What went wrong? Which module caused it — retrieval, reranking, model, or prompt? | Error attribution |
-| How did you fix each Bad Case? Did you update RAG, change prompt, retrain, or add rules? | Fix methodology |
-| Has the model ever been overly conservative (e.g., flagging everything as high risk)? | Failure mode awareness |
-| Has the model ever referenced irrelevant evidence? | Quality awareness |
-| If [metric] improves but human evaluation degrades, how do you investigate? | Metric-audit alignment |
-| What would you do differently if you started over? | Reflective thinking |
+| 给我3个这个项目的真实 Bad Case。 | 具体失败意识 |
+| 出了什么问题？哪个模块导致的——检索、重排、模型还是 prompt？ | 错误归因 |
+| 每个 Bad Case 你怎么修的？更新 RAG、改 prompt、重训还是加规则？ | 修复方法论 |
+| 模型有没有过于保守（比如把所有都标为高风险）？ | 失败模式意识 |
+| 模型有没有引用了不相关的证据？ | 质量意识 |
+| 如果[指标]提升但人工评估下降，你怎么调查？ | 指标-审核对齐 |
+| 如果重新来过你会怎么做？ | 反思思维 |
 
-**Good answer signals:** Can name specific Bad Cases with root causes, traces errors to specific modules, has improvement methodology.
-**Bad answer signals:** "It worked well overall", can't name specific failures, attributes all errors to "the model" without module-level tracing.
+**好的回答信号：** 能说出具体 Bad Case 及根因、将错误追踪到具体模块、有改进方法论。
+**差的回答信号：** "整体效果不错"、说不出具体失败、将所有错误归因于"模型"而没有模块级追踪。
 
-### Topic Layer 7: Elevator Pitch
+### 主题层7：电梯演讲
 
-The 2-minute pitch test — can the candidate explain the complete system chain concisely?
+2分钟电梯演讲测试——候选人能否简洁地解释完整系统链条？
 
-**Why this matters:** In real interviews, "tell me about this project in 2 minutes" is the most common opening question. Candidates who can't articulate the full chain lose the interviewer immediately.
+**为什么这很重要：** 在真正的面试中，"用2分钟介绍这个项目"是最常见的开场问题。无法表达完整链条的候选人会立即失去面试官的注意。
 
-**What a good pitch includes (in 2 minutes):**
-1. What problem existed (1-2 sentences)
-2. What the system does end-to-end (2-3 sentences)
-3. Key technical decisions and why (2-3 sentences)
-4. Results with metrics (1-2 sentences)
-5. What you personally did (1-2 sentences)
+**好的电梯演讲包含（2分钟内）：**
+1. 存在什么问题（1-2句）
+2. 系统端到端做什么（2-3句）
+3. 关键技术决策及原因（2-3句）
+4. 带指标的结果（1-2句）
+5. 你个人做了什么（1-2句）
 
-**What a bad pitch sounds like:**
-- Starts with "we used X, Y, Z" (technology list, no narrative)
-- Can't explain the complete chain in under 5 minutes
-- Mixes up what the team did vs. what they did
-- Has no metrics or results
-- Doesn't explain WHY any decisions were made
+**差的电梯演讲听起来像：**
+- 以"我们用了X、Y、Z"开头（技术列表，没有叙述）
+- 无法在5分钟内解释完整链条
+- 混淆了团队做的和自己做的
+- 没有指标或结果
+- 没有解释任何决策的原因
 
-## High-Risk Rapid-Fire Templates
+## 高风险快问快答模板
 
-After deep-diving each project, use these rapid-fire question sets to test consistency and catch gaps:
+深挖完每个项目后，使用这些快问快答问题集测试一致性和捕捉盲点：
 
-### For LoRA/Fine-tuning Projects
+### LoRA/微调项目
 
-1. How many cards did you use? What model?
-2. How many training samples? Why is that enough?
-3. Why LoRA rank [N]? What happens if rank is too small/large?
-4. Which layers did you attach LoRA to? Why those?
-5. How do you prove LoRA actually helped vs. prompt/RAG?
-6. Did you do ablation? Prompt-only vs. +RAG vs. +LoRA vs. full?
-7. Online effect vs. offline evaluation — are they consistent?
+1. 用了几张卡？什么模型？
+2. 多少训练样本？为什么够？
+3. LoRA rank 为什么选[N]？rank 太小/太大会怎样？
+4. LoRA 挂在哪些层上？为什么选这些？
+5. 你怎么证明 LoRA 真的有帮助 vs. prompt/RAG？
+6. 做消融了吗？仅 prompt vs. +RAG vs. +LoRA vs. 完整流水线？
+7. 线上效果 vs. 离线评估——一致吗？
 
-### For RAG/Retrieval Projects
+### RAG/检索项目
 
-1. What embedding model? Did you fine-tune it?
-2. Chunk size? Why?
-3. Top-K? Why that number?
-4. Why reranker after vector recall?
-5. How do you handle irrelevant retrieved evidence?
-6. How do you trace retrieval errors vs. model errors?
-7. RAG update frequency? How do new samples get ingested?
+1. 什么 Embedding 模型？微调了吗？
+2. 分块大小？为什么？
+3. Top-K？为什么选这个数？
+4. 向量召回后为什么需要 reranker？
+5. 怎么处理检索到的不相关证据？
+6. 怎么区分检索错误 vs. 模型错误？
+7. RAG 更新频率？新样本怎么入库？
 
-### For Agent/Tool-Calling Projects
+### Agent/工具调用项目
 
-1. What tools does the agent have? Schema design?
-2. How does the model decide when to call tools? Prompt, SFT, or routing?
-3. What if tool call fails? Retry strategy?
-4. How do you prevent the model from fabricating tool observations?
-5. How do you evaluate tool calling quality beyond final answer?
-6. Tool calling order — fixed workflow or model-planned?
-7. How do you control tool calling cost and latency?
+1. Agent 有哪些工具？Schema 怎么设计的？
+2. 模型怎么决定什么时候调工具？prompt、SFT 还是路由？
+3. 工具调用失败怎么办？重试策略？
+4. 怎么防止模型编造工具观测结果？
+5. 怎么评估工具调用质量，不只是看最终答案？
+6. 工具调用顺序——固定流程还是模型规划？
+7. 怎么控制工具调用的成本和延迟？
 
-### For Training Engineering
+### 训练工程
 
-1. Training loss vs. eval loss divergence — what does it mean?
-2. Loss spikes / NaN — what to check?
-3. bf16 vs. fp16 vs. fp32 — when and why?
-4. Gradient accumulation — how does it simulate large batch?
-5. OOM troubleshooting sequence?
-6. How to save checkpoint? How to resume training?
-7. How to detect overfitting?
+1. 训练 loss vs. 评估 loss 发散——意味着什么？
+2. Loss 尖峰 / NaN——检查什么？
+3. bf16 vs. fp16 vs. fp32——什么时候用？为什么？
+4. 梯度累积——怎么模拟大 batch？
+5. OOM 排查顺序？
+6. 怎么保存 checkpoint？怎么恢复训练？
+7. 怎么检测过拟合？
 
-## Question Customization Rules
+## 问题定制规则
 
-**Every question MUST be customized to the resume.** These templates are starting points.
+**每个问题必须根据简历定制。** 这些模板是起点。
 
-### Customization Process
+### 定制流程
 
-1. **Read the resume** — Identify project names, technologies, and claimed achievements
-2. **Extract specifics** — For each project, list: tech stack, architecture, quantified results, role
-3. **Fill templates** — Replace `[technology]`, `[project name]`, etc. with actual resume content
-4. **Verify relevance** — Every question should be impossible to answer without knowledge of THAT specific project
-5. **Add follow-up probes** — For each question, prepare at least one follow-up that goes one level deeper
+1. **读取简历** — 识别项目名称、技术和声称的成就
+2. **提取具体信息** — 对每个项目，列出：技术栈、架构、量化结果、角色
+3. **填充模板** — 将 `[技术]`、`[项目名称]` 等替换为实际简历内容
+4. **验证相关性** — 每个问题应该无法在不了解那个具体项目的情况下回答
+5. **准备追问** — 对每个问题，准备至少一个更深入一层的追问
 
-### Bad vs Good Customization
+### 差 vs 好的定制
 
-**Bad (generic):**
-> "Tell me about your experience with RAG."
+**差的（泛泛的）：**
+> "介绍一下你使用 RAG 的经验。"
 
-**Good (resume-specific):**
-> "Your ChangeAgent project uses RAG for risk case retrieval. How did you design the chunking strategy for configuration diffs? Why 300 characters per chunk?"
+**好的（基于简历的）：**
+> "你的 ChangeAgent 项目使用 RAG 进行风险案例检索。你怎么设计配置 diff 的分块策略的？为什么每块300字符？"
 
-**Bad (generic):**
-> "How does LoRA work?"
+**差的（泛泛的）：**
+> "LoRA 是怎么工作的？"
 
-**Good (resume-specific):**
-> "You used LoRA on DeepSeek-V3 for domain adaptation in ChangeAgent. Which layers did you attach LoRA to? Why those specifically? How would you do ablation to prove LoRA helped?"
+**好的（基于简历的）：**
+> "你在 ChangeAgent 项目中对 DeepSeek-V3 使用了 LoRA 做领域适配。LoRA 挂在哪些层上？为什么选这些？怎么做消融证明 LoRA 有帮助？"
 
-**Bad (generic):**
-> "What was a challenge you faced?"
+**差的（泛泛的）：**
+> "你遇到了什么挑战？"
 
-**Good (resume-specific):**
-> "In your ChangeAgent project, risk accuracy improved from 50% to 70%. When the model made errors, how did you trace whether the issue was in RAG retrieval, reranking, or model generation? Walk me through your error attribution process."
+**好的（基于简历的）：**
+> "在你的 ChangeAgent 项目中，风险准确率从 50% 提升到 70%。当模型出错时，你怎么追踪问题是出在 RAG 检索、重排还是模型生成？说说你的错误归因流程。"
 
-## Evaluation Criteria by Answer Depth
+## 回答深度评估标准
 
-| Depth Level | Signal | Example |
+| 深度等级 | 信号 | 示例 |
 |-------------|--------|---------|
-| **Level 0: Can't answer** | Fundamental gap | Doesn't know what loss mask is |
-| **Level 1: Knows the concept** | Surface understanding | "Loss mask controls which tokens have loss" |
-| **Level 2: Can explain mechanism** | Working knowledge | "System/user tokens don't have loss, assistant tokens do" |
-| **Level 3: Can explain reasoning** | Deep understanding | "Tool call tokens have loss because model must learn when to call; tool observations don't because they're external results" |
-| **Level 4: Can discuss trade-offs** | Expert understanding | "Whether to include thought tokens in loss depends on whether you want to supervise the reasoning process" |
-| **Level 5: Can relate to project specifics** | Production understanding | "In ChangeAgent, we mask everything except the structured risk report JSON, because that's what we want the model to generate" |
+| **等级0：无法回答** | 根本性盲点 | 不知道 loss mask 是什么 |
+| **等级1：知道概念** | 表面理解 | "loss mask 控制哪些 token 有 loss" |
+| **等级2：能解释机制** | 工作知识 | "system/user token 没有 loss，assistant token 有" |
+| **等级3：能解释原因** | 深入理解 | "tool call token 有 loss 因为模型要学习何时调用；tool observation 没有因为那是外部结果" |
+| **等级4：能讨论权衡** | 专家理解 | "是否在 loss 中包含 thought token 取决于你是否要监督推理过程" |
+| **等级5：能联系项目具体** | 生产理解 | "在 ChangeAgent 中，我们 mask 掉所有内容除了结构化风险报告 JSON，因为那是我们要模型生成的" |
 
-**Target for strong candidates:** Level 3+ on all topics, Level 4+ on core technologies, Level 5 on their own project.
+**强候选人目标：** 所有主题等级3+，核心技术等级4+，自己的项目等级5。
 
-## Knowledge Gap Detection Signals
+## 知识盲点检测信号
 
-| Answer Pattern | Likely Gap | Recommended Resource |
+| 回答模式 | 可能的盲点 | 推荐资源 |
 |---------------|-----------|---------------------|
-| Can't explain how a technology works internally | Surface-level understanding | Official documentation, source code reading |
-| Mentions technology but can't describe trade-offs | Chose by convention, not reasoning | Architecture blog posts, comparison articles |
-| Can't identify bottlenecks or failure modes | No production thinking | System design primers, post-mortem readings |
-| Gives only happy-path explanations | No failure handling experience | Chaos engineering resources, error handling patterns |
-| Uses "we" exclusively, never "I" | Possible lack of ownership or individual contribution | Practice STAR stories with personal pronouns |
-| Can't quantify impact | No metrics awareness | Practice estimating: users, requests, data sizes, latencies |
-| Stuck at API level, can't go deeper | Framework user, not framework understander | Build something from scratch without the framework |
-| Describes what but not why | Implementation without reasoning | Practice explaining decisions with "because" |
-| No alternative considered | Single-solution thinking | Read architecture decision records (ADRs) |
-| "不清楚" / "not sure" on training details | Didn't track or record training configuration | Build habit of logging all training configs and results |
-| Can't trace errors to specific modules | Monolithic debugging, no modular thinking | Practice error attribution: retrieval vs. reranking vs. model vs. prompt |
-| Knows formula but can't connect to project | Theoretical knowledge without practical application | Re-implement core components in the project context |
-| Can't give a 2-minute pitch | Haven't practiced articulation | Write and practice a pitch for each project |
+| 无法解释技术内部原理 | 表面层次理解 | 官方文档、源码阅读 |
+| 提到技术但无法描述权衡 | 按惯例选择，非推理选择 | 架构博客文章、对比文章 |
+| 无法识别瓶颈或失败模式 | 没有生产思维 | 系统设计入门、事后分析阅读 |
+| 只给出理想路径解释 | 没有失败处理经验 | 混沌工程资源、错误处理模式 |
+| 只用"我们"，从不说"我" | 可能缺乏所有权或个人贡献 | 练习用个人代词讲 STAR 故事 |
+| 无法量化影响 | 没有指标意识 | 练习估算：用户数、请求数、数据规模、延迟 |
+| 停留在 API 层面，无法深入 | 框架使用者，不是框架理解者 | 不用框架从头构建 |
+| 描述做了什么但不解释为什么 | 只有实现没有推理 | 练习用"因为"解释决策 |
+| 没有考虑替代方案 | 单一方案思维 | 阅读架构决策记录（ADR） |
+| 训练细节上"不清楚" | 没有记录训练配置的习惯 | 建立记录所有训练配置和结果的习惯 |
+| 无法追踪错误到具体模块 | 整体式调试，没有模块化思维 | 练习错误归因：检索 vs. 重排 vs. 模型 vs. prompt |
+| 知道公式但无法联系到项目 | 理论知识没有实际应用 | 在项目上下文中重新实现核心组件 |
+| 无法做2分钟电梯演讲 | 没有练习表达 | 为每个项目写好并练习演讲 |

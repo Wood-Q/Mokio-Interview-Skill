@@ -3,173 +3,173 @@ name: mokio-interview-skill
 description: Use when creating a technical resume, polishing an existing resume, or preparing for technical interviews
 ---
 
-# Job Application
+# 求职技能
 
 <EXTREMELY-IMPORTANT>
-If this skill applies to your task, you MUST follow it. This is not optional. This is not negotiable. You cannot rationalize your way out of it.
+如果此技能适用于你的任务，你必须严格遵守。这不是可选的。这不是可以商量的。你不能找借口绕过它。
 
-If you think "this is simple enough to skip the process" — that's when you need the process most.
+如果你觉得"这个足够简单，可以跳过流程"——恰恰是你最需要流程的时候。
 </EXTREMELY-IMPORTANT>
 
-## Overview
+## 概述
 
-**Every job application task flows through this skill.** Resume creation, resume polish, and mock interview — each with disciplined, iterative workflows that prevent shortcuts.
+**每个求职任务都通过此技能流转。** 简历创建、简历润色、模拟面试——每个流程都有严格的迭代工作流，杜绝捷径。
 
-**Core principle:** Iteration beats one-shot output. Every deliverable goes through user review cycles. No final product without intermediate checkpoints.
+**核心原则：** 迭代胜过一次性输出。每个交付物都必须经过用户审核。没有中间检查点就没有最终产品。
 
-**Violating the letter of these rules is violating the spirit of the rules.**
+**违反规则的字面意思就是违反规则的精神。**
 
-## The Iron Law
+## 铁律
 
 ```
-NO ONE-SHOT FINAL OUTPUT. NO SKIPPING USER REVIEW. NO GENERIC CONTENT.
+禁止一次性输出最终结果。禁止跳过用户审核。禁止泛泛而谈的内容。
 ```
 
-Produce a complete resume without iteration? Start over.
-Skip project analysis and fabricate descriptions? Delete them. Start over.
-Give vague, non-specific interview feedback? Rewrite it. Every time.
+未经迭代就生成完整简历？重做。
+跳过项目分析就编造描述？删掉。重做。
+给出模糊、不具体的面试反馈？重写。每次都要重写。
 
-**No exceptions:**
-- Don't "save time" by skipping iterations
-- Don't produce final output in the first round
-- Don't generate generic content instead of analyzing actual projects
-- Don't give subjective scores in interviews — structured feedback only
+**无例外：**
+- 不要"节省时间"而跳过迭代
+- 不要在第一轮就输出最终结果
+- 不要用泛泛的内容代替对实际项目的分析
+- 不要在面试中给出主观评分——只给结构化反馈
 
-## Workflow Dispatch
+## 流程分发
 
 ```dot
 digraph dispatch {
-    "User message received" [shape=doublecircle];
-    "Announce skill" [shape=box];
-    "Intent?" [shape=diamond];
-    "Resume Creation" [shape=box, style=filled, fillcolor="#ccffcc"];
-    "Resume Polish" [shape=box, style=filled, fillcolor="#ccccff"];
-    "Mock Interview" [shape=box, style=filled, fillcolor="#ffcccc"];
-    "Ask to clarify" [shape=box];
+    "收到用户消息" [shape=doublecircle];
+    "宣布技能" [shape=box];
+    "意图?" [shape=diamond];
+    "简历创建" [shape=box, style=filled, fillcolor="#ccffcc"];
+    "简历润色" [shape=box, style=filled, fillcolor="#ccccff"];
+    "模拟面试" [shape=box, style=filled, fillcolor="#ffcccc"];
+    "询问澄清" [shape=box];
 
-    "User message received" -> "Announce skill";
-    "Announce skill" -> "Intent?";
-    "Intent?" -> "Resume Creation" [label="create / build / make\nnew resume"];
-    "Intent?" -> "Resume Polish" [label="polish / improve /\nfix / update resume"];
-    "Intent?" -> "Mock Interview" [label="interview / practice /\nprepare for interview"];
-    "Intent?" -> "Ask to clarify" [label="unclear"];
-    "Ask to clarify" -> "Intent?";
+    "收到用户消息" -> "宣布技能";
+    "宣布技能" -> "意图?";
+    "意图?" -> "简历创建" [label="创建/制作/写\n新简历"];
+    "意图?" -> "简历润色" [label="润色/改进/\n修改/更新简历"];
+    "意图?" -> "模拟面试" [label="面试/练习/\n准备面试"];
+    "意图?" -> "询问澄清" [label="不明确"];
+    "询问澄清" -> "意图?";
 }
 ```
 
-### Announcement (Commitment Principle)
+### 宣布（承诺原则）
 
-**YOU MUST announce at the start:**
+**你必须在开始时宣布：**
 
-> "Using job-application skill — [workflow name] workflow"
+> "正在使用求职技能 —— [工作流名称] 流程"
 
-This creates public commitment. Skipping it = skipping accountability.
+这创建了公开承诺。跳过它 = 跳过问责。
 
-### Intent Detection
+### 意图检测
 
-Match user intent to workflow:
+将用户意图匹配到对应工作流：
 
-| User says | Workflow | Sub-file |
+| 用户说的 | 工作流 | 子文件 |
 |-----------|----------|----------|
-| "create/build/make a resume", "help me write a resume", starting from scratch | Resume Creation | resume-creation.md |
-| "polish/improve/fix/update my resume", "make it better", has existing resume | Resume Polish | resume-polish.md |
-| "interview practice", "mock interview", "prepare for interview" | Mock Interview | mock-interview.md |
-| Ambiguous or mixed | Ask ONE clarifying question | — |
+| "创建/制作/写简历"、"帮我写简历"、从零开始 | 简历创建 | resume-creation.md |
+| "润色/改进/修改/更新简历"、"让它更好"、已有简历 | 简历润色 | resume-polish.md |
+| "面试练习"、"模拟面试"、"准备面试" | 模拟面试 | mock-interview.md |
+| 含糊或混合 | 问一个澄清问题 | — |
 
-**Do NOT guess.** If intent is unclear, ask: "Are you creating a new resume, improving an existing one, or preparing for interviews?"
+**不要猜测。** 如果意图不明确，问："你是要创建新简历、改进现有简历，还是准备面试？"
 
-## Cross-Workflow Rules
+## 跨工作流规则
 
-These rules apply to ALL three workflows. Violating any rule = violating the skill.
+这些规则适用于所有三个工作流。违反任何规则 = 违反此技能。
 
-### Rule 1: Mandatory Iteration
+### 规则1：强制迭代
 
-**Every deliverable requires at least 2 rounds of user review.**
+**每个交付物至少需要2轮用户审核。**
 
 ```
-Produce draft → User reviews → Revise → User reviews → Finalize
+生成草稿 → 用户审核 → 修改 → 用户审核 → 定稿
 ```
 
-After each draft, present these choices:
+每份草稿后，提供以下选项：
 
-> **Accept** — Proceed with current version
-> **Modify** — Tell me what to change (I revise)
-> **Regenerate** — Start this section over with different approach
+> **接受** — 使用当前版本继续
+> **修改** — 告诉我需要改什么（我来修改）
+> **重新生成** — 用不同方式重新开始这一部分
 
-**Red Flags — STOP and Restart:**
-- Producing complete final output in first response
-- Not offering Accept/Modify/Regenerate choices
-- Skipping user review "because it looks good"
-- Saying "here's your final resume" before any review cycle
-- Merging multiple iterations without showing changes
+**红旗 —— 立即停止并重做：**
+- 在第一次回复中就输出完整最终结果
+- 不提供接受/修改/重新生成选项
+- 跳过用户审核因为"看起来不错"
+- 在任何审核轮次之前就说"这是你的最终简历"
+- 合并多次迭代但不展示变更
 
-### Rule 2: LapisCV Format Compliance
+### 规则2：LapisCV 格式合规
 
-All resumes MUST follow LapisCV Markdown format. See lapiscv-template.md for the complete specification.
+所有简历必须遵循 LapisCV Markdown 格式。完整规范见 lapiscv-template.md。
 
-**LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and rendering configuration.** A standalone .md file will NOT produce a proper resume. You MUST:
+**LapisCV 不只是 Markdown 格式——它包括 CSS 样式表、字体和渲染配置。** 单独的 .md 文件无法生成正确的简历。你必须：
 
-1. **Copy LapisCV assets to the working directory** — run `cp -r` from `assets/lapis-cv-vscode-v2.0.1/` to copy `.vscode/` and `lapis-cv/` into the user's current directory (flat, not into a subdirectory — VS Code uses relative paths for CSS)
-2. **Place the resume .md file inside the LapisCV project directory** (alongside `lapis-cv/styles/` and `lapis-cv/fonts/`)
-3. **To export PDF:** Open the .md in VS Code, preview with styles applied, then print to PDF
+1. **将 LapisCV 资源复制到工作目录** —— 将 `.vscode/`、`lapis-cv/`、`template-cn.md`、`template-en.md` 从 `assets/lapis-cv-vscode-v2.0.1/` 复制到用户当前目录（平铺，不放入子目录——VS Code 使用相对路径加载 CSS）
+2. **将简历 .md 文件放在 LapisCV 项目目录内**（与 `lapis-cv/styles/` 和 `lapis-cv/fonts/` 同级）
+3. **导出 PDF：** 在 VS Code 中打开 .md，预览（样式自动加载），然后打印为 PDF
 
-**Mandatory format elements:**
-- `h1` = Full name (centered)
-- `blockquote` = Contact info bar with icon prefixes
-- `img alt="avatar"` = Profile photo (optional, right-aligned)
-- `h2` + icon prefix = Section headers (Education, Work Experience, Projects, Skills)
-- `div alt="entry-title"` = Entry title row with title left, date right
-- `---` = Page break between sections if needed
+**必须包含的格式元素：**
+- `h1` = 全名（居中）
+- `blockquote` = 带图标前缀的联系方式栏
+- `img alt="avatar"` = 头像照片（可选，右对齐）
+- `h2` + 图标前缀 = 章节标题（教育经历、工作经验、项目经历、专业技能）
+- `div alt="entry-title"` = 条目标题行（标题左，日期右）
+- `---` = 必要时的分页符
 
-**Every resume output MUST pass the Product Checklist** (see resume-creation.md).
+**每份简历输出必须通过产品检查清单**（见 resume-creation.md）。
 
-### Rule 3: Project-Based Specificity
+### 规则3：基于项目的具体性
 
-**Generic content is forbidden.** Every bullet point must be grounded in:
-- Actual project code (for resume creation — AI reads the code)
-- Actual resume content (for resume polish — AI reads the existing resume)
-- Actual project experience (for mock interview — AI questions from resume)
+**禁止泛泛而谈的内容。** 每个要点必须有依据：
+- 实际项目代码（简历创建——AI 读取代码）
+- 实际简历内容（简历润色——AI 读取现有简历）
+- 实际项目经验（模拟面试——AI 根据简历提问）
 
-| Excuse | Reality |
+| 借口 | 事实 |
 |--------|---------|
-| "I can generate reasonable bullet points without reading code" | Generic = forgettable. Specific = memorable. Read the code. |
-| "The user didn't provide a project directory" | Ask for it. One question at a time. Don't fabricate. |
-| "I'll add common interview questions" | Questions must come from the resume's projects. No generic lists. |
-| "One iteration is enough" | It never is. Every professional document improves with review. |
+| "我不读代码也能生成合理的要点" | 泛泛 = 健忘。具体 = 难忘。去读代码。 |
+| "用户没有提供项目目录" | 去问。一次问一个问题。不要编造。 |
+| "我加一些常见面试问题" | 问题必须来自简历中的项目。不要用通用列表。 |
+| "一次迭代就够了" | 永远不够。每份专业文档都在审核中改进。 |
 
-### Rule 4: Language Rules
+### 规则4：语言规则
 
-- **Resumes:** English only (LapisCV templates are English-formatted)
-- **Mock interviews:** Follow user's language preference (Chinese or English)
-- **All communication with user:** Match user's language
+- **简历：** 根据用户选择使用中文或英文（LapisCV 模板支持两种语言）
+- **模拟面试：** 跟随用户语言偏好（中文或英文）
+- **所有与用户的交流：** 匹配用户的语言
 
-### Rule 5: Output File
+### 规则5：输出文件
 
-Final resume output is a `.md` file saved to user-specified path. **Always ask where to save. Never assume.**
+最终简历输出是保存到用户指定路径的 `.md` 文件。**始终询问保存位置。不要假设。**
 
-## Rationalization Prevention
+## 借口防范表
 
-| Excuse | Reality |
+| 借口 | 事实 |
 |--------|---------|
-| "The user seems impatient, I'll produce final output quickly" | Rushed output = poor output. Iteration is non-negotiable. |
-| "This resume section is straightforward, no need to iterate" | Straightforward sections still benefit from review. Every section. |
-| "I can write good project descriptions without reading code" | You can't. You'll write generic fluff. Read the code. |
-| "The user said 'just fix it', they don't want to review" | "Fix it" means improve it, not skip review. Show changes. |
-| "I'll give this answer a 7/10 rating" | Subjective scores are unreliable. Use structured feedback. |
-| "Generic interview questions are fine for practice" | Generic practice wastes time. Project-specific practice prepares. |
-| "I'll just write the Markdown, they can set up LapisCV later" | A standalone .md without CSS/fonts won't render. Copy assets first. |
+| "用户看起来很着急，我快速输出最终结果" | 匆忙的输出 = 糟糕的输出。迭代是不可协商的。 |
+| "这个简历部分很简单，不需要迭代" | 简单的部分也受益于审核。每个部分都要。 |
+| "我不读代码也能写出好的项目描述" | 你不能。你会写出泛泛的废话。去读代码。 |
+| "用户说'直接修'，他们不想审核" | "直接修"意味着改进它，不是跳过审核。展示变更。 |
+| "我给这个回答打7/10分" | 主观评分不可靠。使用结构化反馈。 |
+| "通用面试问题练习也行" | 通用练习浪费时间。基于项目的练习才有效。 |
+| "我只写 Markdown，他们之后可以自己设置 LapisCV" | 没有 CSS/字体的单独 .md 无法正确渲染。先复制资源。 |
 
-## Reference Files
+## 参考文件
 
-Load sub-files ONLY when the corresponding workflow is dispatched:
+仅在对应工作流分发时加载子文件：
 
-| File | When to Load |
+| 文件 | 何时加载 |
 |------|-------------|
-| resume-creation.md | Resume Creation workflow dispatched |
-| resume-polish.md | Resume Polish workflow dispatched |
-| mock-interview.md | Mock Interview workflow dispatched |
-| lapiscv-template.md | Any resume output (creation or polish) |
-| interview-question-bank.md | Mock Interview workflow dispatched |
-| assets/lapis-cv-vscode-v2.0.1/ | Copy to working directory before any resume output |
+| resume-creation.md | 简历创建工作流分发时 |
+| resume-polish.md | 简历润色工作流分发时 |
+| mock-interview.md | 模拟面试工作流分发时 |
+| lapiscv-template.md | 任何简历输出（创建或润色） |
+| interview-question-bank.md | 模拟面试工作流分发时 |
+| assets/lapis-cv-vscode-v2.0.1/ | 在任何简历输出之前复制到工作目录 |
 
-**Do NOT load all files at startup.** Progressive disclosure saves context.
+**不要在启动时加载所有文件。** 渐进式披露节省上下文。

@@ -1,301 +1,299 @@
-# Mock Interview Workflow
+# 模拟面试工作流
 
-## Overview
+## 概述
 
-Conduct project-by-project deep-dive interviews based on the user's resume, with structured feedback and improvement planning.
+基于用户简历，逐项目进行深挖面试，配合结构化反馈和改进计划。
 
-**Core principle:** Real technical interviews don't ask "tell me about your project." They dig into each layer — from background and role boundary, to data and training, to architecture internals, to evaluation and failure modes. Every question must be traceable to the resume. Every answer must be probed deeper.
+**核心原则：** 真正的技术面试不会只问"介绍一下你的项目"。他们会逐层深挖——从背景和角色边界，到数据和训练，到架构内部，到评估和失败模式。每个问题必须追溯到简历。每个回答必须被追问更深。
 
-**Violating the letter of this process is violating the spirit of this process.**
+**违反流程的字面意思就是违反流程的精神。**
 
-## The Iron Law
+## 铁律
 
 ```
-NO GENERIC QUESTIONS. NO SUBJECTIVE SCORES. NO SESSIONS WITHOUT IMPROVEMENT PLAN.
+禁止泛泛的问题。禁止主观评分。禁止没有改进计划的面试。
 ```
 
-Ask generic questions not based on the resume? Restart the project.
-Give a numerical score for an answer? Delete it. Use structured feedback.
-End without an improvement plan? Session incomplete. Always produce one.
+问不是基于简历的泛泛问题？重启该项目。
+给回答打数字分？删掉。用结构化反馈。
+没有改进计划就结束？面试不完整。必须产出。
 
-**No exceptions:**
-- Don't ask "Tell me about yourself" or "What's your biggest weakness?"
-- Don't give scores like "7/10" or "B+" — they're unreliable
-- Don't skip the improvement plan "because the interview went well"
-- Don't combine multiple projects in one interview round
-- Don't rush through questions — each answer gets full feedback
-- Don't accept surface-level answers without follow-up probing
+**无例外：**
+- 不要问"介绍一下你自己"或"你最大的缺点是什么？"
+- 不要给"7/10"或"B+"这样的评分——它们不可靠
+- 不要因为"面试表现不错"就跳过改进计划
+- 不要在一次面试中合并多个项目
+- 不要赶问题——每个回答都要完整反馈
+- 不要接受表面层次的回答而不追问
 
-## Process Flow
+## 流程图
 
 ```dot
 digraph mock_interview {
     rankdir=TB;
-    "Announce: Mock Interview workflow" [shape=box, style=filled, fillcolor="#ffcccc"];
-    "Read resume, extract projects" [shape=box];
-    "Ask interview language" [shape=box];
-    "For each project:" [shape=box, style=filled, fillcolor="#ffffcc"];
-    "  Deep-dive by topic\n(5-7 topics per project)" [shape=box];
-    "  For each topic:\n  Ask probing questions (3-5)" [shape=box];
-    "  User answers each question" [shape=box];
-    "  Follow-up if surface-level" [shape=diamond];
-    "  Give structured feedback" [shape=box];
-    "  Detect knowledge gaps" [shape=box];
-    "All projects done?" [shape=diamond];
-    "High-risk rapid-fire round" [shape=box, style=filled, fillcolor="#ffdddd"];
-    "Generate improvement plan" [shape=box, style=filled, fillcolor="#ccffcc"];
-    "Run Improvement Plan Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
-    "Save improvement plan" [shape=doublecircle];
+    "宣布：模拟面试流程" [shape=box, style=filled, fillcolor="#ffcccc"];
+    "读取简历，提取项目" [shape=box];
+    "询问面试语言" [shape=box];
+    "对每个项目：" [shape=box, style=filled, fillcolor="#ffffcc"];
+    "  按主题深挖\n（每个项目5-7个主题）" [shape=box];
+    "  对每个主题：\n  提出追问（3-5个）" [shape=box];
+    "  用户回答每个问题" [shape=box];
+    "  回答太浅则追问" [shape=diamond];
+    "  给出结构化反馈" [shape=box];
+    "  检测知识盲点" [shape=box];
+    "所有项目完成？" [shape=diamond];
+    "高风险快问快答环节" [shape=box, style=filled, fillcolor="#ffdddd"];
+    "生成改进计划" [shape=box, style=filled, fillcolor="#ccffcc"];
+    "运行改进计划检查清单" [shape=box, style=filled, fillcolor="#ffcccc"];
+    "保存改进计划" [shape=doublecircle];
 
-    "Announce: Mock Interview workflow" -> "Read resume, extract projects";
-    "Read resume, extract projects" -> "Ask interview language";
-    "Ask interview language" -> "For each project:";
-    "For each project:" -> "  Deep-dive by topic\n(5-7 topics per project)";
-    "  Deep-dive by topic\n(5-7 topics per project)" -> "  For each topic:\n  Ask probing questions (3-5)";
-    "  For each topic:\n  Ask probing questions (3-5)" -> "  User answers each question";
-    "  User answers each question" -> "  Follow-up if surface-level";
-    "  Follow-up if surface-level" -> "  For each topic:\n  Ask probing questions (3-5)" [label="Answer too shallow"];
-    "  Follow-up if surface-level" -> "  Give structured feedback" [label="Answer has depth"];
-    "  Give structured feedback" -> "  Detect knowledge gaps";
-    "  Detect knowledge gaps" -> "  For each topic:\n  Ask probing questions (3-5)" [label="More topics"];
-    "  Detect knowledge gaps" -> "All projects done?" [label="All topics covered"];
-    "All projects done?" -> "For each project:" [label="No"];
-    "All projects done?" -> "High-risk rapid-fire round" [label="Yes"];
-    "High-risk rapid-fire round" -> "Generate improvement plan";
-    "Generate improvement plan" -> "Run Improvement Plan Checklist";
-    "Run Improvement Plan Checklist" -> "Save improvement plan" [label="All pass"];
-    "Run Improvement Plan Checklist" -> "Fix gaps" [label="Any fail"];
-    "Fix gaps" -> "Run Improvement Plan Checklist";
+    "宣布：模拟面试流程" -> "读取简历，提取项目";
+    "读取简历，提取项目" -> "询问面试语言";
+    "询问面试语言" -> "对每个项目：";
+    "对每个项目：" -> "  按主题深挖\n（每个项目5-7个主题）";
+    "  按主题深挖\n（每个项目5-7个主题）" -> "  对每个主题：\n  提出追问（3-5个）";
+    "  对每个主题：\n  提出追问（3-5个）" -> "  用户回答每个问题";
+    "  用户回答每个问题" -> "  回答太浅则追问";
+    "  回答太浅则追问" -> "  对每个主题：\n  提出追问（3-5个）" [label="回答太浅"];
+    "  回答太浅则追问" -> "  给出结构化反馈" [label="回答有深度"];
+    "  给出结构化反馈" -> "  检测知识盲点";
+    "  检测知识盲点" -> "  对每个主题：\n  提出追问（3-5个）" [label="更多主题"];
+    "  检测知识盲点" -> "所有项目完成？" [label="所有主题覆盖"];
+    "所有项目完成？" -> "对每个项目：" [label="否"];
+    "所有项目完成？" -> "高风险快问快答环节" [label="是"];
+    "高风险快问快答环节" -> "生成改进计划";
+    "生成改进计划" -> "运行改进计划检查清单";
+    "运行改进计划检查清单" -> "保存改进计划" [label="全部通过"];
+    "运行改进计划检查清单" -> "修复漏洞" [label="有未通过项"];
+    "修复漏洞" -> "运行改进计划检查清单";
 }
 ```
 
-## Phase 1: Setup
+## 阶段1：设置
 
-### Read the Resume
+### 读取简历
 
-Ask the user for their resume file path. Read the entire file.
+向用户询问简历文件路径。读取整个文件。
 
-**If the file doesn't exist:** Cannot proceed. Resume is the foundation for all questions.
+**如果文件不存在：** 无法继续。简历是所有问题的基础。
 
-**Extract from resume:**
-- List of all projects (name, background, solution, results, tech stack)
-- Work experience (role, company, duration)
-- Skills listed
-- **For each project, identify the deep-dive topics** (see Phase 2)
+**从简历中提取：**
+- 所有项目列表（名称、背景、解决方案、成果、技术栈）
+- 工作经验（角色、公司、时长）
+- 列出的技能
+- **对每个项目，识别深挖主题**（见阶段2）
 
-### Ask Interview Language
+### 询问面试语言
 
-> "What language would you like the interview in?
-> - **English** — All questions and feedback in English
-> - **中文** — All questions and feedback in Chinese
-> - **Mixed** — Questions in your chosen language, technical terms in English"
+> "你希望用什么语言进行面试？
+> - **英文** — 所有问题和反馈用英文
+> - **中文** — 所有问题和反馈用中文
+> - **混合** — 问题用你选择的语言，技术术语用英文"
 
-**Respect the user's choice throughout the entire session.** Don't switch languages mid-interview.
+**在整个面试过程中尊重用户的选择。** 不要中途切换语言。
 
-## Phase 2: Project-by-Project Deep Dive
+## 阶段2：逐项目深挖
 
-### The Deep-Dive Method
+### 深挖方法
 
-Real technical interviews don't ask one question per topic and move on. They dig progressively deeper, following a structured topic progression for each project.
+真正的技术面试不会每个主题问一个问题就过。他们按结构化的主题递进，对每个项目逐步深入。
 
-**For EACH project, identify 5-7 deep-dive topics** based on what the resume claims. The topic list is derived from the project's content — NOT from a generic checklist.
+**对每个项目，根据简历声明识别5-7个深挖主题。** 主题列表来自项目内容——不是通用清单。
 
-#### Deep-Dive Topic Progression
+#### 深挖主题递进
 
-For each project, progress through these topic layers in order. Not every project will have all layers — skip layers that don't apply.
+对每个项目，按顺序推进这些主题层。不是每个项目都有所有层——跳过不适用的层。
 
-| Layer | Topic | Questions Probe |
+| 层级 | 主题 | 问题探测方向 |
 |-------|-------|----------------|
-| 1 | **Background & Role Boundary** | What problem does this project solve? What specifically did YOU do vs. the team? |
-| 2 | **Architecture & Design Decisions** | Why this architecture? What alternatives were considered? What trade-offs? |
-| 3 | **Data & Training** (for ML/AI projects) | Where did data come from? How was it labeled? How much? Train/val/test split? |
-| 4 | **Technical Internals** | How does component X work internally? Why this specific design? |
-| 5 | **Evaluation & Metrics** | How do you measure success? Precision/recall/F1? A/B testing? Bad Case analysis? |
-| 6 | **Failure Modes & Improvement** | What went wrong? What Bad Cases did you encounter? How did you fix them? |
-| 7 | **Elevator Pitch** | Can you explain the complete chain in 2 minutes? |
+| 1 | **项目背景与角色边界** | 这个项目解决什么问题？你具体做了什么 vs. 团队做了什么？ |
+| 2 | **架构与设计决策** | 为什么选这个架构？考虑了哪些替代方案？做了什么权衡？ |
+| 3 | **数据与训练**（ML/AI项目） | 数据从哪来？怎么标注的？多少数据？训练/验证/测试划分？ |
+| 4 | **技术内部原理** | 组件X内部是怎么工作的？为什么这么设计？ |
+| 5 | **评估与指标** | 如何衡量成功？精确率/召回率/F1？A/B测试？Bad Case分析？ |
+| 6 | **失败模式与改进** | 出了什么问题？遇到了什么 Bad Case？怎么修的？ |
+| 7 | **电梯演讲** | 能在2分钟内解释完整链条吗？ |
 
-#### Question Generation per Topic
+#### 每个主题的问题生成
 
-For each topic, generate 3-5 questions that probe progressively deeper:
+对每个主题，生成3-5个逐步深入的问题：
 
-**Level 1 — Comprehension:** "What does X do?" / "How does X work?"
-**Level 2 — Reasoning:** "Why did you choose X over Y?" / "What would happen if X failed?"
-**Level 3 — Self-awareness:** "What would you do differently?" / "What don't you know about this?"
+**层级1——理解：** "X是做什么的？" / "X是怎么工作的？"
+**层级2——推理：** "为什么选择X而不是Y？" / "如果X失败了会怎样？"
+**层级3——自我认知：** "你会怎么做不同？" / "你对这个有什么不清楚的？"
 
-**Red Flags — STOP and Regenerate:**
-- Questions that could apply to any project ("Tell me about your project")
-- Questions about technologies NOT mentioned in the resume
-- Generic behavioral questions ("What's your biggest weakness?")
-- Only asking Level 1 questions (comprehension) without deeper probing
-- Questions about topics the user has no way to know from their resume
+**红旗 —— 停止并重新生成：**
+- 适用于任何项目的问题（"介绍一下你的项目"）
+- 关于简历中没有提到的技术的问题
+- 泛泛的行为面试问题（"你最大的缺点是什么？"）
+- 只问层级1问题（理解）而不深入追问
+- 关于用户从简历中无法知道的主题的问题
 
-### The Follow-Up Rule
+### 追问规则
 
-**When a user gives a surface-level answer, you MUST follow up.** Do not accept shallow answers and move on.
+**当用户给出表面层次的回答时，你必须追问。** 不要接受浅薄的回答就继续。
 
-**Surface-level answer signals:**
-- Answer only describes WHAT was done, not WHY or HOW
-- Answer uses vague terms ("we used optimization") without specifics
-- Answer avoids numbers ("it improved performance") without quantification
-- Answer deflects ("the team handled that") without personal contribution
-- Answer is "不清楚" / "not sure" / "I don't remember"
+**表面层次回答的信号：**
+- 回答只描述做了什么，没有为什么或怎么做
+- 回答使用模糊术语（"我们用了优化"）没有具体内容
+- 回答回避数字（"提升了性能"）没有量化
+- 回答推脱（"团队处理的"）没有个人贡献
+- 回答是"不清楚" / "not sure" / "我不记得了"
 
-**Follow-up patterns:**
-| Surface Answer | Follow-Up Probe |
+**追问模式：**
+| 浅层回答 | 追问探测 |
 |---------------|-----------------|
-| "We used LoRA for fine-tuning" | "What rank did you use? Why? Which layers did you attach LoRA to?" |
-| "It improved accuracy" | "From what to what? How was accuracy defined? On what test set?" |
-| "The team built an Agent system" | "What specifically did YOU build? What was your role boundary?" |
-| "Not sure about that detail" | Mark as knowledge gap. Continue to next question. Don't linger. |
-| "We did data cleaning" | "What exactly did you clean? Deduplication? Quality filtering? How?" |
+| "我们用了 LoRA 微调" | "你用了什么 rank？为什么？LoRA 挂在哪些层上？" |
+| "提升了准确率" | "从多少到多少？准确率怎么定义的？在什么测试集上？" |
+| "团队构建了 Agent 系统" | "你具体构建了什么？你的角色边界是什么？" |
+| "那个细节不太清楚" | 标记为知识盲点。继续下一个问题。不要纠结。 |
+| "我们做了数据清洗" | "具体清洗了什么？去重？质量过滤？怎么做的？" |
 
-### Interview Format
+### 面试格式
 
-**Ask ONE question at a time.** Wait for the user's answer before proceeding.
+**一次问一个问题。** 等待用户回答后再继续。
 
-> **Project: [Name] — Topic: [Topic Name] — Question [X/Y]**
+> **项目：[名称] — 主题：[主题名称] — 问题 [X/Y]**
 >
-> [Question]
+> [问题]
 >
-> Take your time answering. When you're ready, type your response.
+> 慢慢回答。准备好后输入你的回答。
 
-**After the user answers, give structured feedback:**
+**用户回答后，给出结构化反馈：**
 
 ```markdown
-**Reference Answer**: [A strong answer demonstrating the expected depth and structure.
-This is NOT what the user "should have said" word-for-word — it shows the level
-of specificity, technical reasoning, and self-awareness expected. Include specific
-numbers, design rationale, and awareness of alternatives and limitations.]
+**参考回答**: [展示预期深度和结构的强回答。这不是用户"应该说的"逐字稿——
+它展示了预期的具体性、技术推理和自我认知水平。包含具体数字、设计理据、
+对替代方案和局限性的认知。]
 
-**Improvement Suggestions**: [Specific, actionable points about what was missing
-or could be stronger. Reference concrete techniques, concepts, or frameworks.
-Point out where the answer stayed at surface level and what deeper layer to reach.]
+**改进建议**: [关于缺失或可以加强的具体、可操作的建议。引用具体的技术、
+概念或框架。指出回答停留在表面层次的地方以及应该达到的更深层。]
 
-**Knowledge Gaps**: [If the answer revealed fundamental knowledge gaps, list them
-with recommended learning resources. If no gaps, say "No significant gaps detected."]
+**知识盲点**: [如果回答暴露了根本性的知识盲点，列出它们并推荐学习资源。
+如果没有盲点，说"未检测到显著知识盲点。"]
 ```
 
-### Knowledge Gap Detection
+### 知识盲点检测
 
-When a user says "不清楚" / "not sure" / "I don't remember" / gives a clearly wrong answer, **mark it as a knowledge gap immediately.** These gaps are critical for the improvement plan.
+当用户说"不清楚" / "not sure" / "我不记得了" / 给出明显错误的回答时，**立即标记为知识盲点。** 这些盲点对改进计划至关重要。
 
-**Gap detection signals:**
-| Signal | What It Reveals | How to Follow Up |
+**盲点检测信号：**
+| 信号 | 揭示了什么 | 如何追问 |
 |--------|----------------|-----------------|
-| "不清楚" / "I'm not sure" | Surface-level understanding without deep knowledge | Mark gap, provide brief explanation, move on |
-| Confident but wrong answer | Misconception — dangerous in interviews | Gently correct, mark as priority gap |
-| Vague without specifics | Used the technology but doesn't understand internals | Ask "how does it work internally?" to confirm depth |
-| "The team handled that" | Unclear role boundary — interviewers will probe this | Ask "what was YOUR specific contribution?" |
-| Can explain WHAT but not WHY | Implementation without reasoning — red flag for senior roles | Ask "why this approach and not alternatives?" |
-| No awareness of alternatives | Single-solution thinking | Ask "what other approaches exist for this problem?" |
+| "不清楚" / "我不确定" | 表面层次理解，没有深入知识 | 标记盲点，提供简要解释，继续 |
+| 自信但错误的回答 | 误解——面试中很危险 | 温和纠正，标记为优先盲点 |
+| 模糊没有具体内容 | 使用了技术但不理解内部原理 | 问"内部是怎么工作的？"确认深度 |
+| "团队处理的" | 角色边界不清——面试官会追问 | 问"你具体贡献了什么？" |
+| 能解释做了什么但不能解释为什么 | 只有实现没有推理——高级岗位的红旗 | 问"为什么用这个方案而不是替代方案？" |
+| 没有考虑过替代方案 | 单一方案思维 | 问"这个问题还有什么其他方案？" |
 
-## Phase 3: High-Risk Rapid-Fire Round
+## 阶段3：高风险快问快答环节
 
-**After all projects are deep-dived, conduct a rapid-fire round covering cross-cutting concerns.**
+**所有项目深挖完成后，进行覆盖横切关注点的快问快答环节。**
 
-This round simulates the "rapid follow-up" style of real technical interviews where interviewers quickly test knowledge breadth and catch inconsistencies.
+这个环节模拟真正技术面试中面试官快速测试知识广度和捕捉不一致的风格。
 
-### Rapid-Fire Categories
+### 快问快答类别
 
-Pick questions from categories relevant to the user's resume claims:
+从与用户简历声明相关的类别中选取问题：
 
-1. **Training details** — "How many cards? What batch size? What learning rate? bf16 or fp16? Why?"
-2. **Evaluation rigor** — "How do you define your metrics? Test set size? Who labeled it? Precision or recall more important?"
-3. **Bad Case handling** — "Give me 3 real Bad Cases. How did you fix each? Which module was the problem?"
-4. **Ablation evidence** — "How do you prove LoRA/RAG/prompt helped vs. base model? Did you do ablation?"
-5. **Architecture limits** — "What would break if scale increased 10x? What are the current bottlenecks?"
+1. **训练细节** — "几张卡？什么 batch size？什么学习率？bf16 还是 fp16？为什么？"
+2. **评估严谨性** — "你怎么定义你的指标？测试集多大？谁标的？精确率还是召回率更重要？"
+3. **Bad Case 处理** — "给我3个真实的 Bad Case。每个怎么修的？哪个模块出了问题？"
+4. **消融证据** — "你怎么证明 LoRA/RAG/prompt 有帮助 vs. 基座模型？你做消融了吗？"
+5. **架构极限** — "如果规模扩大10倍会坏什么？当前瓶颈在哪？"
 
-**Format:** Ask 5-8 rapid-fire questions, one after another. Brief feedback only — mark gaps for the improvement plan.
+**格式：** 连续问5-8个快问快答问题。只给简短反馈——标记盲点留给改进计划。
 
-## Phase 4: Improvement Plan
+## 阶段4：改进计划
 
-**This is MANDATORY.** No session ends without one.
+**这是必须的。** 每次面试都必须产出改进计划。
 
-### Plan Format
+### 计划格式
 
 ```markdown
-# Interview Improvement Plan
+# 面试改进计划
 
-## Summary
-[Brief overall assessment — 2-3 sentences about strengths and areas for growth]
+## 总结
+[简要总体评估——2-3句关于优势和成长领域的描述]
 
-## Analysis by Dimension
+## 维度分析
 
-| Dimension | Strong Areas | Growth Areas |
+| 维度 | 优势领域 | 成长领域 |
 |-----------|-------------|--------------|
-| Background & Role | [Can clearly articulate project context and personal contribution] | [Specific weaknesses] |
-| Architecture & Design | [Specific strengths] | [Specific weaknesses] |
-| Data & Training | [Specific strengths] | [Specific weaknesses] |
-| Technical Internals | [Specific strengths] | [Specific weaknesses] |
-| Evaluation & Metrics | [Specific strengths] | [Specific weaknesses] |
-| Failure Modes | [Specific strengths] | [Specific weaknesses] |
-| Elevator Pitch | [Can explain each project clearly in 2 minutes] | [Specific weaknesses] |
+| 项目背景与角色 | [能清晰表达项目背景和个人贡献] | [具体弱点] |
+| 架构与设计 | [具体优势] | [具体弱点] |
+| 数据与训练 | [具体优势] | [具体弱点] |
+| 技术内部原理 | [具体优势] | [具体弱点] |
+| 评估与指标 | [具体优势] | [具体弱点] |
+| 失败模式 | [具体优势] | [具体弱点] |
+| 电梯演讲 | [能在2分钟内清晰解释每个项目] | [具体弱点] |
 
-## Knowledge Gap Checklist
+## 知识盲点清单
 
-- [ ] **[Gap 1]** — [What was unclear/wrong] → [Recommended resource to close the gap]
-- [ ] **[Gap 2]** — [What was unclear/wrong] → [Recommended resource]
-- [ ] **[Gap 3]** — [What was unclear/wrong] → [Recommended resource]
+- [ ] **[盲点1]** — [什么不清楚/错了] → [推荐资源弥补盲点]
+- [ ] **[盲点2]** — [什么不清楚/错了] → [推荐资源]
+- [ ] **[盲点3]** — [什么不清楚/错了] → [推荐资源]
 
-## Per-Project Deep-Dive Summary
+## 逐项目深挖总结
 
-### [Project 1 Name]
-- **Topics covered:** [List which deep-dive topics were covered]
-- **Strengths:** [What went well — specific to this project]
-- **Areas to improve:** [What to work on — specific to this project]
-- **Must-prepare evidence:** [Specific items the candidate should prepare before real interviews]
+### [项目1名称]
+- **覆盖主题：** [列出覆盖的深挖主题]
+- **优势：** [表现好的方面——针对此项目具体]
+- **需改进：** [需要加强的方面——针对此项目具体]
+- **必须准备的证据：** [候选人在真正面试前应准备的具体材料]
 
-### [Project 2 Name]
-- [Same structure]
+### [项目2名称]
+- [相同结构]
 
-## Next Steps
+## 下一步行动
 
-1. **[Most impactful improvement]** — [Specific action with timeline suggestion]
-2. **[Second most impactful]** — [Specific action with timeline suggestion]
-3. **[Third most impactful]** — [Specific action with timeline suggestion]
+1. **[影响最大的改进]** — [具体行动及时间建议]
+2. **[第二影响的改进]** — [具体行动及时间建议]
+3. **[第三影响的改进]** — [具体行动及时间建议]
 
-## "Must-Prepare Evidence" Checklist
-[Based on the deep-dive, list specific artifacts the candidate should prepare:]
-- [ ] Training configuration table for [project]
-- [ ] Dataset statistics table for [project]
-- [ ] Evaluation metrics definition table for [project]
-- [ ] 3 real Bad Cases for [project]
-- [ ] Ablation comparison: prompt only vs. prompt+RAG vs. SFT/LoRA vs. full pipeline
-- [ ] 2-minute pitch for each project, practiced until fluent
+## "必须准备的证据"清单
+[基于深挖，列出候选人应准备的具体材料：]
+- [ ] [项目]的训练配置表
+- [ ] [项目]的数据集统计表
+- [ ] [项目]的评估指标定义表
+- [ ] [项目]的3个真实 Bad Case
+- [ ] 消融对比：仅 prompt vs. prompt+RAG vs. SFT/LoRA vs. 完整流水线
+- [ ] 每个项目的2分钟电梯演讲，练习到流利
 ```
 
-### Ask to Save
+### 询问是否保存
 
-> "Your improvement plan is ready. Would you like me to save it? If so, where should I save the file?"
+> "你的改进计划准备好了。需要我保存吗？如果需要，保存到哪里？"
 
-## Phase 5: Improvement Plan Checklist
+## 阶段5：改进计划检查清单
 
-**Before saving the improvement plan, verify EVERY item:**
+**保存改进计划之前，验证每一项：**
 
-- [ ] Every project from the resume was deep-dived (not just surface questions)
-- [ ] Each project covered at least 3 deep-dive topics from the progression
-- [ ] Surface-level answers were followed up with deeper probes
-- [ ] Every answer received structured feedback (reference answer + improvement + gaps)
-- [ ] Knowledge gaps were detected and marked during the interview (not only at the end)
-- [ ] Rapid-fire round was conducted covering cross-cutting concerns
-- [ ] "Must-prepare evidence" items are specific and actionable
-- [ ] Per-project notes identify both strengths AND areas to improve
-- [ ] The improvement plan is in the user's chosen language
-- [ ] No subjective scores or ratings were given anywhere in the session
+- [ ] 简历中的每个项目都被深挖（不只是表面问题）
+- [ ] 每个项目覆盖了至少3个深挖主题
+- [ ] 表面层次的回答被追问更深
+- [ ] 每个回答都收到了结构化反馈（参考回答 + 改进建议 + 盲点）
+- [ ] 知识盲点在面试过程中被检测和标记（不只是最后）
+- [ ] 进行了覆盖横切关注点的快问快答环节
+- [ ] "必须准备的证据"项目是具体和可操作的
+- [ ] 逐项目笔记同时识别了优势和需改进的方面
+- [ ] 改进计划使用用户选择的语言
+- [ ] 整个面试过程中没有给出任何主观评分
 
-**Any item fails? Fix it before saving. No exceptions.**
+**有任何项未通过？先修复再保存。无例外。**
 
-## Common Rationalizations
+## 常见借口
 
-| Excuse | Reality |
+| 借口 | 事实 |
 |--------|---------|
-| "I'll give them a score like 7/10" | Scores are unreliable and unactionable. Use structured feedback. |
-| "Generic questions are fine for practice" | Generic practice doesn't prepare for real interviews. Use resume-specific deep-dives. |
-| "I'll ask all questions at once" | Overwhelming. One at a time. Probe deeper on surface answers. |
-| "The improvement plan isn't necessary for strong candidates" | Every candidate has gaps. The plan IS the value of mock interviews. |
-| "I can skip the rapid-fire round" | Rapid-fire catches inconsistencies that deep-dives miss. Never skip. |
-| "I'll just list the gaps, no need for resources" | Gaps without resources are complaints, not help. Always recommend how to close them. |
-| "One project is enough for a session" | Real interviews cover all projects. Complete the full session or explicitly ask if the user wants to stop. |
-| "Their answer was good enough, no need to probe deeper" | "Good enough" in practice ≠ "good enough" in an interview. Follow up until depth is demonstrated. |
-| "They said 'not sure', I'll just move on" | Knowledge gaps MUST be marked. They're the most valuable output of the session. |
-| "I don't need to ask about their specific role boundary" | Interviewers always probe "what did YOU do vs. the team." Always ask. |
+| "我给他们打个分比如7/10" | 评分不可靠且不可操作。用结构化反馈。 |
+| "通用问题练习也行" | 通用练习不准备真正的面试。用基于简历的深挖。 |
+| "我一次问完所有问题" | 太多了。一次一个。对浅层回答深入追问。 |
+| "改进计划对强候选人不必要" | 每个候选人都有盲点。计划就是模拟面试的价值。 |
+| "我可以跳过快问快答环节" | 快问快答捕捉深挖遗漏的不一致。永远不要跳过。 |
+| "我只列出盲点就行，不需要推荐资源" | 没有资源的盲点只是抱怨，不是帮助。始终推荐如何弥补。 |
+| "一个项目就够一次面试了" | 真正的面试覆盖所有项目。完成完整面试或明确询问用户是否想停止。 |
+| "他们的回答够好了，不需要追问" | 练习中"够好" ≠ 面试中"够好"。追问直到展示深度。 |
+| "他们说'不清楚'，我就继续吧" | 知识盲点必须标记。它们是面试最有价值的输出。 |
+| "我不需要问他们具体的角色边界" | 面试官总会追问"你做了什么 vs. 团队做了什么"。必须问。 |
