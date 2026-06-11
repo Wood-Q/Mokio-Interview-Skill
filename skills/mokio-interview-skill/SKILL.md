@@ -109,7 +109,7 @@ All resumes MUST follow LapisCV Markdown format. See lapiscv-template.md for the
 
 **LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and rendering configuration.** A standalone .md file will NOT produce a proper resume. You MUST:
 
-1. **Download the LapisCV project** by running `bash skills/mokio-interview-skill/scripts/download-lapiscv.sh` before creating or polishing any resume
+1. **Copy LapisCV assets to the working directory** — run `cp -r` from `assets/lapis-cv-vscode-v2.0.1/` to copy `.vscode/` and `lapis-cv/` into the user's current directory (flat, not into a subdirectory — VS Code uses relative paths for CSS)
 2. **Place the resume .md file inside the LapisCV project directory** (alongside `lapis-cv/styles/` and `lapis-cv/fonts/`)
 3. **To export PDF:** Open the .md in VS Code, preview with styles applied, then print to PDF
 
@@ -157,7 +157,7 @@ Final resume output is a `.md` file saved to user-specified path. **Always ask w
 | "The user said 'just fix it', they don't want to review" | "Fix it" means improve it, not skip review. Show changes. |
 | "I'll give this answer a 7/10 rating" | Subjective scores are unreliable. Use structured feedback. |
 | "Generic interview questions are fine for practice" | Generic practice wastes time. Project-specific practice prepares. |
-| "I'll just write the Markdown, they can download LapisCV later" | A standalone .md without CSS/fonts will NOT render. Download MUST happen first. |
+| "I'll just write the Markdown, they can set up LapisCV later" | A standalone .md without CSS/fonts won't render. Copy assets first. |
 
 ## Reference Files
 
@@ -170,6 +170,6 @@ Load sub-files ONLY when the corresponding workflow is dispatched:
 | mock-interview.md | Mock Interview workflow dispatched |
 | lapiscv-template.md | Any resume output (creation or polish) |
 | interview-question-bank.md | Mock Interview workflow dispatched |
-| scripts/download-lapiscv.sh | Resume Creation or Polish workflow — run before generating any resume |
+| assets/lapis-cv-vscode-v2.0.1/ | Copy to working directory before any resume output |
 
 **Do NOT load all files at startup.** Progressive disclosure saves context.

@@ -28,7 +28,7 @@ Start rewriting without analyzing? Delete changes. Start over.
 digraph resume_polish {
     rankdir=TB;
     "Announce: Resume Polish workflow" [shape=box, style=filled, fillcolor="#ccccff"];
-    "Verify LapisCV project\nenvironment exists" [shape=box, style=filled, fillcolor="#ffdddd"];
+    "Copy LapisCV assets to\nworking directory (if missing)" [shape=box, style=filled, fillcolor="#ffdddd"];
     "Read existing resume file" [shape=box];
     "Validate LapisCV format" [shape=box];
     "Analyze 7 dimensions" [shape=box, style=filled, fillcolor="#ffffcc"];
@@ -40,8 +40,8 @@ digraph resume_polish {
     "Run Product Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
     "Save polished .md file" [shape=doublecircle];
 
-    "Announce: Resume Polish workflow" -> "Verify LapisCV project\nenvironment exists";
-    "Verify LapisCV project\nenvironment exists" -> "Read existing resume file";
+    "Announce: Resume Polish workflow" -> "Copy LapisCV assets to\nworking directory (if missing)";
+    "Copy LapisCV assets to\nworking directory (if missing)" -> "Read existing resume file";
     "Read existing resume file" -> "Validate LapisCV format";
     "Validate LapisCV format" -> "Analyze 7 dimensions";
     "Analyze 7 dimensions" -> "Produce analysis report\n(severity-ranked)";
@@ -59,15 +59,16 @@ digraph resume_polish {
 
 ## Phase 1: Setup LapisCV Environment
 
-**If the user's resume is already in a LapisCV project directory**, skip this step.
+**If the user's working directory already has `lapis-cv/styles/` and `lapis-cv/fonts/`**, skip this step.
 
-**If the resume is a standalone .md file without CSS/fonts**, download LapisCV:
+**If not**, copy LapisCV assets from the skill directory into the user's current working directory:
 
 ```bash
-bash skills/mokio-interview-skill/scripts/download-lapiscv.sh [target_dir]
+cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/.vscode" ./
+cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/lapis-cv" ./
 ```
 
-Then move the resume .md file INTO the target directory so CSS/fonts render correctly.
+Files MUST be copied flat (not into a subdirectory) because `.vscode/settings.json` uses relative paths like `./lapis-cv/styles/...`.
 
 ## Phase 2: Read and Validate
 
@@ -87,7 +88,7 @@ Check LapisCV format compliance:
 - [ ] Entry titles use `div alt="entry-title"`
 - [ ] Date format is consistent
 
-**If format is severely broken:** Tell the user. Offer to restructure using the template from lapiscv-template.md before polishing content.
+**If format is severely broken:** Tell the user. Offer to restructure by copying from `assets/lapis-cv-vscode-v2.0.1/template-cn.md` (or `template-en.md`) and migrating their content into the template before polishing.
 
 ## Phase 2: Six-Dimension Analysis
 

@@ -2,27 +2,25 @@
 
 LapisCV v2.x Markdown template format for VS Code. All resume output MUST comply with this specification.
 
-## ⚠️ MANDATORY: Download LapisCV Before Creating Resumes
+## ⚠️ MANDATORY: Setup LapisCV Before Creating Resumes
 
-LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and rendering configuration required for proper PDF export. You MUST download the actual project, not just write Markdown.
+LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and VS Code settings required for proper rendering and PDF export. You MUST copy the LapisCV assets before writing any resume.
 
-**Download link:** https://github.com/BingyanStudio/LapisCV/releases
-
-**Download and setup:**
+**Copy LapisCV assets to the current working directory (flat, not into a subdirectory):**
 
 ```bash
-bash skills/mokio-interview-skill/scripts/download-lapiscv.sh [target_dir]
+# Copy from skill assets to working directory
+# SKILL_DIR = the directory where this skill is installed
+cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/.vscode" ./
+cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/lapis-cv" ./
 ```
 
-- `target_dir` is optional (default: `./lapis-cv-project`)
-- The script will skip if LapisCV is already downloaded
+**Why flat copy?** `.vscode/settings.json` references `./lapis-cv/styles/...` via relative paths. The resume .md file must be at the same directory level as `lapis-cv/` and `.vscode/` for CSS to load correctly in VS Code Markdown preview.
 
-Or download manually from: https://github.com/BingyanStudio/LapisCV/releases
-
-**Directory structure after download:**
+**Directory structure after copy:**
 
 ```
-lapis-cv-project/
+./                              ← Current working directory
 ├── .vscode/
 │   └── settings.json          # VS Code Markdown preview settings
 ├── lapis-cv/
@@ -37,127 +35,40 @@ lapis-cv-project/
 │       ├── lapis-cv.css       # Sans-serif style
 │       ├── lapis-cv-serif.css # Serif style
 │       └── main.css
-├── template-cn.md             # Chinese template
-└── template-en.md             # English template
+└── your-resume.md             # ← Your resume goes here
 ```
 
-**Your resume Markdown file MUST be placed inside this directory** so the CSS and fonts render correctly.
+**To export PDF:** Open the .md in VS Code → Markdown Preview (styles render automatically) → Print to PDF.
 
-**To export PDF:** Open the Markdown file in VS Code, use Markdown preview (the styles will render automatically), then print to PDF.
+**Red Flags — STOP if LapisCV assets are not present:**
+- Writing a resume .md file without `lapis-cv/styles/` and `lapis-cv/fonts/` in the same directory
+- Placing the resume in a subdirectory (CSS relative paths will break)
+- Forgetting to copy `.vscode/settings.json` (preview won't load styles)
 
-**Red Flags — STOP if LapisCV is not downloaded:**
-- Writing a resume Markdown file without the LapisCV project directory present
-- Only creating a standalone .md file without CSS/fonts
-- Forgetting to place the .md file inside the LapisCV project directory
+## Authoritative Templates
 
-## Complete English Template
+The authoritative LapisCV templates are in the skill's assets directory. **Always read these files directly** when generating a resume — they define the exact format, icon usage, and structure.
 
-```markdown
-# FirstName LastName
+| Template | Path | Language |
+|----------|------|----------|
+| Chinese | `assets/lapis-cv-vscode-v2.0.1/template-cn.md` | 中文简历 |
+| English | `assets/lapis-cv-vscode-v2.0.1/template-en.md` | English resume |
 
-> <span alt="icon">&#xe60f;</span> `(123)456-7890`&emsp;&emsp; <span alt="icon">&#xe7ca;</span> `email@example.com`&emsp;&emsp; <span alt="icon">&#xe600;</span> [username](https://github.com/username)
+**When generating a resume:**
+1. Read the appropriate template file from assets
+2. Copy its structure exactly — icon codes, `<span class="icon">` vs `<span alt="icon">`, `div` attributes, `blockquote` formatting
+3. Replace placeholder content with the user's information
+4. Do NOT invent format details from memory — always check the actual template
 
-<img alt="avatar" src="https://avatars.githubusercontent.com/u/XXXXXXX?v=4">
+**Key differences between Chinese and English templates:**
 
-## &#xe80c; Education
-
-<div alt="entry-title">
-    <h3>University Name - Degree - Major</h3>
-    <p>Month Year - Month Year</p>
-</div>
-
-- **Awards**: Award 1, Award 2
-- **Campus Experience**: Role description
-
-## &#xe618; Work Experience
-
-<div alt="entry-title">
-    <h3>Job Title - Company, Location</h3>
-    <p>Month Year - Month Year</p>
-</div>
-
-One-line summary of role and impact.
-
-- **Action verb** + specific achievement + quantified result
-- **Action verb** + specific achievement + quantified result
-
-## &#xe635; Projects
-
-<div alt="entry-title">
-    <h3>Project Name</h3>
-    <a href="https://github.com/user/project">github.com/user/project</a>
-</div>
-
-**Project Background:** One sentence explaining the problem context and why the project exists.
-
-**Solution:**
-- **Action verb** + specific technical detail + quantified result
-- **Action verb** + specific technical detail + quantified result
-
-**Result:** Quantified outcomes — metrics, improvements, deliverables
-- **Action verb** + specific technical detail + quantified result
-
-## &#xecfa; Skills
-
-- Category 1: Skill A, Skill B, Skill C
-- Category 2: Skill D, Skill E, Skill F
-- Category 3: Skill G, Skill H
-```
-
-## Complete Chinese Template
-
-```markdown
-# 姓名
-
-> <span alt="icon">&#xe60f;</span> `(123)456-7890`&emsp;&emsp;
-> <span alt="icon">&#xe7ca;</span> `email@example.com`&emsp;&emsp;
-> <span alt="icon">&#xe600;</span> [username](https://github.com/username)
-
-<img alt="avatar" src="https://avatars.githubusercontent.com/u/XXXXXXX?v=4">
-
-## &#xe80c; 教育经历
-
-<div alt="entry-title">
-    <h3>学校名称 - 学历 - 专业</h3>
-    <p>YYYY.MM - YYYY.MM</p>
-</div>
-
-- **奖项**： 奖项1，奖项2
-- **校园经历**： 角色描述
-
-## &#xe618; 工作经验
-
-<div alt="entry-title">
-    <h3>职位 - 公司</h3>
-    <p>YYYY.MM - YYYY.MM</p>
-</div>
-
-一句话概述职责和影响力。
-
-- **动词** + 具体成就 + 量化结果
-- **动词** + 具体成就 + 量化结果
-
-## &#xe635; 项目经历
-
-<div alt="entry-title">
-    <h3>项目名称</h3>
-    <a href="https://github.com/user/project">github.com/user/project</a>
-</div>
-
-**项目背景：** 一句话概述项目要解决的问题和存在意义。
-
-**解决方案：**
-- **动词** + 具体技术细节 + 量化结果
-- **动词** + 具体技术细节 + 量化结果
-
-**项目成果：** 量化指标 — 性能提升、准确率变化、耗时缩短等
-- **动词** + 具体技术细节 + 量化结果
-
-## &#xecfa; 专业技能
-
-- 类别1： 技能A，技能B，技能C
-- 类别2： 技能D，技能E，技能F
-```
+| Element | Chinese (`template-cn.md`) | English (`template-en.md`) |
+|---------|---------------------------|---------------------------|
+| Contact icons | `<span class="icon">` | `<span alt="icon">` |
+| Contact layout | Each item on separate `>` line | All items on one `>` line |
+| Education format | `学校 - 学历 - 专业` in `h3` | `University Name` in `h3`, degree below |
+| Date format | `YYYY.MM - YYYY.MM` | `Month Year - Month Year` |
+| Section names | 教育经历、工作经验、项目经历、专业技能 | Education, Work Experience, Projects, Skills |
 
 ## Icon Mapping
 

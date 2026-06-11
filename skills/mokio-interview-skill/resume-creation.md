@@ -28,7 +28,7 @@ Write a bullet point without analyzing the project? Delete it. Start over.
 digraph resume_creation {
     rankdir=TB;
     "Announce: Resume Creation workflow" [shape=box, style=filled, fillcolor="#ccffcc"];
-    "Download/verify LapisCV\nproject directory" [shape=box, style=filled, fillcolor="#ffdddd"];
+    "Copy LapisCV assets to\nworking directory" [shape=box, style=filled, fillcolor="#ffdddd"];
     "Ask: AI-fill or user-fill\npersonal info & education?" [shape=diamond];
     "Present info template for\nuser to fill at once" [shape=box];
     "Collect project sources\n(local path or GitHub URL)" [shape=box];
@@ -40,10 +40,10 @@ digraph resume_creation {
     "User reviews complete resume" [shape=diamond];
     "Revise complete resume" [shape=box];
     "Run Product Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
-    "Save .md file into\nLapisCV project directory" [shape=doublecircle];
+    "Save .md file in working\ndirectory (same level as lapis-cv/)" [shape=doublecircle];
 
-    "Announce: Resume Creation workflow" -> "Download/verify LapisCV\nproject directory";
-    "Download/verify LapisCV\nproject directory" -> "Ask: AI-fill or user-fill\npersonal info & education?";
+    "Announce: Resume Creation workflow" -> "Copy LapisCV assets to\nworking directory";
+    "Copy LapisCV assets to\nworking directory" -> "Ask: AI-fill or user-fill\npersonal info & education?";
     "Ask: AI-fill or user-fill\npersonal info & education?" -> "Present info template for\nuser to fill at once" [label="AI fills"];
     "Ask: AI-fill or user-fill\npersonal info & education?" -> "Use placeholders in\nresume header" [label="User fills"];
     "Present info template for\nuser to fill at once" -> "Collect project sources\n(local path or GitHub URL)";
@@ -58,7 +58,7 @@ digraph resume_creation {
     "User reviews complete resume" -> "Revise complete resume" [label="Modify/Regenerate"];
     "User reviews complete resume" -> "Run Product Checklist" [label="Accept"];
     "Revise complete resume" -> "User reviews complete resume";
-    "Run Product Checklist" -> "Save .md file into\nLapisCV project directory" [label="All pass"];
+    "Run Product Checklist" -> "Save .md file in working\ndirectory (same level as lapis-cv/)" [label="All pass"];
     "Run Product Checklist" -> "Fix violations" [label="Any fail"];
     "Fix violations" -> "Run Product Checklist";
 }
@@ -68,20 +68,32 @@ digraph resume_creation {
 
 **MANDATORY FIRST STEP.** Do not skip this. LapisCV requires CSS stylesheets, fonts, and VS Code settings to render correctly — a standalone .md file will NOT produce a proper resume.
 
-### Download and Setup
+### Copy LapisCV Assets to Working Directory
 
-Run the download script from the skill directory:
+Copy LapisCV files directly into the user's current working directory (flat, not into a subdirectory). The `.vscode/settings.json` uses relative paths like `./lapis-cv/styles/...`, so the resume .md file MUST be at the same level as `lapis-cv/` and `.vscode/`.
 
 ```bash
-bash skills/mokio-interview-skill/scripts/download-lapiscv.sh [target_dir]
+# Copy LapisCV assets to current working directory
+# SKILL_DIR is the directory where this skill is installed
+cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/.vscode" ./
+cp -r "${SKILL_DIR}/assets/lapis-cv-vscode-v2.0.1/lapis-cv" ./
 ```
 
-- `target_dir` is optional (default: `./lapis-cv-project`)
-- If LapisCV is already downloaded, the script will detect it and skip
+**Why flat copy (not into a subdirectory)?** VS Code's Markdown preview loads CSS via relative paths in `.vscode/settings.json`. If the resume is in a subdirectory, the relative paths break and formatting won't render.
 
-**If the user already has a LapisCV project directory**, ask where it is and use that instead of downloading again.
+**If the user already has LapisCV files in the working directory** (`lapis-cv/styles/` and `lapis-cv/fonts/` exist), skip this step.
 
-After running the script, the resume .md file MUST be saved inside the target directory (alongside `lapis-cv/styles/` and `lapis-cv/fonts/`).
+After copying, the working directory should look like:
+
+```
+./
+├── .vscode/
+│   └── settings.json          # VS Code Markdown preview settings
+├── lapis-cv/
+│   ├── fonts/                 # Icon & text fonts
+│   └── styles/                # CSS stylesheets
+└── [resume].md                # ← Your resume goes here
+```
 
 ## Phase 2: Information Collection
 
@@ -101,23 +113,24 @@ If the user chooses AI generation, present this template for them to fill out **
 请填写以下信息（可选字段可留空）：
 
 姓名：
-学校：
-学历与专业：（如：本科 - 人工智能专业）
-就读时间：（如：2020.09 - 2024.06）
+学校：                   学历：              专业：
+就读时间：               （如：2020.09 - 2024.06）
 手机号：
 微信号：
 邮箱：
-GitHub：（可选，格式：github.com/username）
-个人网站/博客：（可选）
-头像图片URL：（可选，留空则不显示）
+GitHub：                 （格式：github.com/username，可选）
+头像图片URL：             （可选，留空则不显示）
 
-奖项与荣誉：（可选，多个用逗号分隔）
-校园经历：（可选，如：担任XX社团负责人）
+曾获奖项：               （可选，多个用逗号分隔）
+校园经历：               （可选）
+专业技能：               （可选，AI会根据项目自动补充，你也可以提前写好）
 ```
 
 **The user fills out the entire template in one response.** Do NOT ask each field individually.
 
 If the user leaves optional fields blank, omit them from the resume. Do NOT invent content.
+
+**Format reference:** When generating the resume, read the LapisCV templates directly from `assets/lapis-cv-vscode-v2.0.1/template-cn.md` (Chinese) or `assets/lapis-cv-vscode-v2.0.1/template-en.md` (English). These are the authoritative format — copy their structure exactly, replacing placeholder content with the user's information.
 
 ### Step 2B: User Fills In Themselves (Placeholder Mode)
 
@@ -269,9 +282,17 @@ Present project descriptions for user review:
 
 ### Complete Resume Draft
 
-After all project descriptions are accepted, assemble the full resume using the LapisCV template (see lapiscv-template.md).
+After all project descriptions are accepted, assemble the full resume by **copying the LapisCV template and replacing placeholder content**.
 
-**The resume .md file MUST be saved inside the LapisCV project directory** (the directory containing `lapis-cv/styles/` and `lapis-cv/fonts/`). A standalone .md file without the CSS/fonts will NOT render correctly.
+**How to generate the resume:**
+1. Read `assets/lapis-cv-vscode-v2.0.1/template-cn.md` (or `template-en.md` for English)
+2. Copy the entire template content to a new file in the working directory (e.g., `resume.md`)
+3. Replace placeholder text with the user's actual information
+4. Keep all LapisCV formatting tags exactly as-is (`<span class="icon">`, `<div alt="entry-title">`, icon codes, etc.)
+
+**Do NOT write the resume from scratch.** Always start from the template file to ensure format correctness.
+
+**The resume .md file MUST be saved in the working directory** (same level as `lapis-cv/` and `.vscode/`). A standalone .md file without the CSS/fonts will NOT render correctly.
 
 **Assembly order:**
 1. Header (name + contact bar + avatar)
