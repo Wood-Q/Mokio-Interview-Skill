@@ -107,6 +107,12 @@ After each draft, present these choices:
 
 All resumes MUST follow LapisCV Markdown format. See lapiscv-template.md for the complete specification.
 
+**LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and rendering configuration.** A standalone .md file will NOT produce a proper resume. You MUST:
+
+1. **Download the LapisCV project** from https://github.com/BingyanStudio/LapisCV/releases before creating or polishing any resume
+2. **Place the resume .md file inside the LapisCV project directory** (alongside `lapis-cv/styles/` and `lapis-cv/fonts/`)
+3. **To export PDF:** Open the .md in VS Code, preview with styles applied, then print to PDF
+
 **Mandatory format elements:**
 - `h1` = Full name (centered)
 - `blockquote` = Contact info bar with icon prefixes
@@ -151,7 +157,7 @@ Final resume output is a `.md` file saved to user-specified path. **Always ask w
 | "The user said 'just fix it', they don't want to review" | "Fix it" means improve it, not skip review. Show changes. |
 | "I'll give this answer a 7/10 rating" | Subjective scores are unreliable. Use structured feedback. |
 | "Generic interview questions are fine for practice" | Generic practice wastes time. Project-specific practice prepares. |
-| "I already know what a good resume looks like" | Knowing ≠ producing. Follow the process. |
+| "I'll just write the Markdown, they can download LapisCV later" | A standalone .md without CSS/fonts will NOT render. Download MUST happen first. |
 
 ## Reference Files
 

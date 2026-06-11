@@ -28,6 +28,7 @@ Write a bullet point without analyzing the project? Delete it. Start over.
 digraph resume_creation {
     rankdir=TB;
     "Announce: Resume Creation workflow" [shape=box, style=filled, fillcolor="#ccffcc"];
+    "Download/verify LapisCV\nproject directory" [shape=box, style=filled, fillcolor="#ffdddd"];
     "Ask: AI-fill or user-fill\npersonal info & education?" [shape=diamond];
     "Present info template for\nuser to fill at once" [shape=box];
     "Collect project sources\n(local path or GitHub URL)" [shape=box];
@@ -39,9 +40,10 @@ digraph resume_creation {
     "User reviews complete resume" [shape=diamond];
     "Revise complete resume" [shape=box];
     "Run Product Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
-    "Save final .md file" [shape=doublecircle];
+    "Save .md file into\nLapisCV project directory" [shape=doublecircle];
 
-    "Announce: Resume Creation workflow" -> "Ask: AI-fill or user-fill\npersonal info & education?";
+    "Announce: Resume Creation workflow" -> "Download/verify LapisCV\nproject directory";
+    "Download/verify LapisCV\nproject directory" -> "Ask: AI-fill or user-fill\npersonal info & education?";
     "Ask: AI-fill or user-fill\npersonal info & education?" -> "Present info template for\nuser to fill at once" [label="AI fills"];
     "Ask: AI-fill or user-fill\npersonal info & education?" -> "Use placeholders in\nresume header" [label="User fills"];
     "Present info template for\nuser to fill at once" -> "Collect project sources\n(local path or GitHub URL)";
@@ -56,13 +58,33 @@ digraph resume_creation {
     "User reviews complete resume" -> "Revise complete resume" [label="Modify/Regenerate"];
     "User reviews complete resume" -> "Run Product Checklist" [label="Accept"];
     "Revise complete resume" -> "User reviews complete resume";
-    "Run Product Checklist" -> "Save final .md file" [label="All pass"];
+    "Run Product Checklist" -> "Save .md file into\nLapisCV project directory" [label="All pass"];
     "Run Product Checklist" -> "Fix violations" [label="Any fail"];
     "Fix violations" -> "Run Product Checklist";
 }
 ```
 
-## Phase 1: Information Collection
+## Phase 1: Setup LapisCV Environment
+
+**MANDATORY FIRST STEP.** Do not skip this. LapisCV requires CSS stylesheets, fonts, and VS Code settings to render correctly — a standalone .md file will NOT produce a proper resume.
+
+### Download and Setup
+
+```bash
+# 1. Download LapisCV VS Code extension zip
+curl -L -o lapis-cv.zip "https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip"
+
+# 2. Unzip to project directory
+unzip lapis-cv.zip -d lapis-cv-project
+
+# 3. Resume .md file will be placed INSIDE lapis-cv-project/
+```
+
+After downloading, verify the directory structure contains `lapis-cv/styles/` and `lapis-cv/fonts/`. If missing, the download failed — retry.
+
+**If the user already has a LapisCV project directory**, ask where it is and use that instead of downloading again.
+
+## Phase 2: Information Collection
 
 ### Step 1: Ask How to Handle Personal Info & Education
 
@@ -249,6 +271,8 @@ Present project descriptions for user review:
 ### Complete Resume Draft
 
 After all project descriptions are accepted, assemble the full resume using the LapisCV template (see lapiscv-template.md).
+
+**The resume .md file MUST be saved inside the LapisCV project directory** (the directory containing `lapis-cv/styles/` and `lapis-cv/fonts/`). A standalone .md file without the CSS/fonts will NOT render correctly.
 
 **Assembly order:**
 1. Header (name + contact bar + avatar)

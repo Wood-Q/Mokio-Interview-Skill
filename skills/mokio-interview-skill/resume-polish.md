@@ -28,6 +28,7 @@ Start rewriting without analyzing? Delete changes. Start over.
 digraph resume_polish {
     rankdir=TB;
     "Announce: Resume Polish workflow" [shape=box, style=filled, fillcolor="#ccccff"];
+    "Verify LapisCV project\nenvironment exists" [shape=box, style=filled, fillcolor="#ffdddd"];
     "Read existing resume file" [shape=box];
     "Validate LapisCV format" [shape=box];
     "Analyze 7 dimensions" [shape=box, style=filled, fillcolor="#ffffcc"];
@@ -39,10 +40,11 @@ digraph resume_polish {
     "Run Product Checklist" [shape=box, style=filled, fillcolor="#ffcccc"];
     "Save polished .md file" [shape=doublecircle];
 
-    "Announce: Resume Polish workflow" -> "Read existing resume file";
+    "Announce: Resume Polish workflow" -> "Verify LapisCV project\nenvironment exists";
+    "Verify LapisCV project\nenvironment exists" -> "Read existing resume file";
     "Read existing resume file" -> "Validate LapisCV format";
     "Validate LapisCV format" -> "Analyze 7 dimensions";
-    "Analyze 6 dimensions" -> "Produce analysis report\n(severity-ranked)";
+    "Analyze 7 dimensions" -> "Produce analysis report\n(severity-ranked)";
     "Produce analysis report\n(severity-ranked)" -> "User selects priorities";
     "User selects priorities" -> "Apply fixes (highest priority first)";
     "Apply fixes (highest priority first)" -> "User reviews each fix";
@@ -55,7 +57,20 @@ digraph resume_polish {
 }
 ```
 
-## Phase 1: Read and Validate
+## Phase 1: Setup LapisCV Environment
+
+**If the user's resume is already in a LapisCV project directory**, skip this step.
+
+**If the resume is a standalone .md file without CSS/fonts**, you MUST download LapisCV:
+
+```bash
+curl -L -o lapis-cv.zip "https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip"
+unzip lapis-cv.zip -d lapis-cv-project
+```
+
+Then move the resume .md file INTO the `lapis-cv-project/` directory so CSS/fonts render correctly.
+
+## Phase 2: Read and Validate
 
 ### Read the Resume
 

@@ -2,7 +2,55 @@
 
 LapisCV v2.x Markdown template format for VS Code. All resume output MUST comply with this specification.
 
-**Download:** https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip
+## ⚠️ MANDATORY: Download LapisCV Before Creating Resumes
+
+LapisCV is NOT just a Markdown format — it includes CSS stylesheets, fonts, and rendering configuration required for proper PDF export. You MUST download the actual project, not just write Markdown.
+
+**Download link:** https://github.com/BingyanStudio/LapisCV/releases
+
+**Download and setup steps:**
+
+```bash
+# 1. Download the latest VS Code extension zip from Releases page
+curl -L -o lapis-cv.zip "https://github.com/BingyanStudio/LapisCV/releases/download/v2.0.1/lapis-cv-vscode-v2.0.1.zip"
+
+# 2. Unzip
+unzip lapis-cv.zip -d lapis-cv-project
+
+# 3. The resume Markdown file goes INSIDE the unzipped project directory
+#    alongside lapis-cv/ (which contains styles/ and fonts/)
+```
+
+**Directory structure after download:**
+
+```
+lapis-cv-project/
+├── .vscode/
+│   └── settings.json          # VS Code Markdown preview settings
+├── lapis-cv/
+│   ├── fonts/                 # Icon fonts, Source Han Sans, JetBrains Mono
+│   │   ├── iconfont.ttf
+│   │   ├── JetBrainsMono-Regular.ttf
+│   │   ├── SourceHanSansCN-Bold.ttf
+│   │   ├── SourceHanSansCN-Medium.ttf
+│   │   ├── SourceHanSansCN-Regular.ttf
+│   │   └── SourceHanSerifCN-Bold.ttf
+│   └── styles/
+│       ├── lapis-cv.css       # Sans-serif style
+│       ├── lapis-cv-serif.css # Serif style
+│       └── main.css
+├── template-cn.md             # Chinese template
+└── template-en.md             # English template
+```
+
+**Your resume Markdown file MUST be placed inside this directory** so the CSS and fonts render correctly.
+
+**To export PDF:** Open the Markdown file in VS Code, use Markdown preview (the styles will render automatically), then print to PDF.
+
+**Red Flags — STOP if LapisCV is not downloaded:**
+- Writing a resume Markdown file without the LapisCV project directory present
+- Only creating a standalone .md file without CSS/fonts
+- Forgetting to place the .md file inside the LapisCV project directory
 
 ## Complete English Template
 
