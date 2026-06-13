@@ -8,6 +8,39 @@
 
 ---
 
+## 安装
+
+### 方式一：告诉你的 Agent
+
+直接对 Claude Code 说：
+
+```
+为我安装 mokio-interview-skill，github链接为https://github.com/Wood-Q/Mokio-Interview-Skill
+```
+
+### 方式二：手动安装
+
+```bash
+npx skills add Wood-Q/Mokio-Interview-Skill -g
+```
+
+---
+
+**目录**
+
+- [为什么需要这个 Skill](#为什么需要这个-skill)
+- [三个工作流](#三个工作流)
+  - [1. 简历创建](#1-简历创建resume-creationmd)
+  - [2. 简历润色](#2-简历润色resume-polishmd)
+  - [3. 模拟面试](#3-模拟面试mock-interviewmd)
+- [目录结构](#目录结构)
+- [约束技术](#约束技术)
+- [LapisCV 集成](#lapiscv-集成)
+- [使用方式](#使用方式)
+- [许可证](#许可证)
+
+---
+
 ## 为什么需要这个 Skill
 
 大多数 AI 辅助简历和面试工具都有可预测的失败模式：
