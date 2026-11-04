@@ -1,5 +1,7 @@
 # Mokio Interview Skill
 
+[![Try Mokio 简历与模拟面试 on Socialistic](https://socialistic.ai/api/embed/mokio-interview-skill-7ba990?lang=zh)](https://socialistic.ai/zh/skill/mokio-interview-skill-7ba990?utm_source=github&utm_medium=pr&utm_campaign=github-interview-skills&utm_content=badge)
+
 > 面试快到了，简历还没写？写完了但全是"参与了XX开发"？项目跟着教程敲的，不知道怎么包装？模拟面试只会问"介绍一下你自己"？
 >
 > **让 AI 真正帮你解决面试前的问题。**
